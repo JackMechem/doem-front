@@ -46,25 +46,71 @@ const HeaderText = styled.p`
 // ---- Item Card ---- //
 
 const ItemCardContainer = styled.div`
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
 
-    width: 600px;
-    height: 300px;
+    width: 650px;
+    height: 250px;
 
-    // border: solid red 2px;
+    border: solid red 2px;
+`
+
+const ItemCardPhoto = styled.img`
+    position: absolute;
+
+    height: 250px;
+    width: 250px;
+
+    background-color: black;
+`
+
+const ItemCardRightContainer = styled.div`
+    position: absolute;
+
+    right: 0px;
+    left: 250px;
+    bottom: 0px;
+    top: 0px;
+
+    height: 100%;
+
+    border: solid blue 2px;
 `
 
 const ItemCardButtonPill = styled.button`
     position: absolute;
-    height: 50px;
-    width: 300px;
+    height: 40px;
+    width: 250px;
 
-////////////////
-    text-align: center;
-    vertical-align: middle;
+    bottom: 30px;
+    /* right: 10px; */
+    left: 80px;
+
+    padding-left: 20px;
 
     background-color: ${Colors.palate[0]};
     color: ${Colors.palate[1]};
+
+    font-size: 18pt;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-align: left;
+
     border-radius: 90px;
+    border: none;
+
+    transition-duration: 50ms;
+
+    :hover {
+        filter: brightness(150%);
+        -webkit-filter: brightness(150%);
+        background-color: ${Colors.palate[2]};
+    }
+
+    :active {
+        border: solid black 3px;
+    }
 `
 
 export {
@@ -75,5 +121,7 @@ export {
 
     // Item Card
     ItemCardContainer,
+    ItemCardPhoto,
+    ItemCardRightContainer,
     ItemCardButtonPill
 }
