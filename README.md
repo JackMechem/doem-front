@@ -59,6 +59,7 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
+        <li><a href="#hosted-with">Hosted With</a></li>
       </ul>
     </li>
     <li>
@@ -86,13 +87,16 @@
 *Screenshot updated on 1/23/2023*
 
 
-### Built With
-
-* [![React][React.js]][React-url]
+### Built With 
+[![React][React.js]][React-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+### Hosted With
 
+[![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)](https://firebase.google.com/)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 ## Getting Started
