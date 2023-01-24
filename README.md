@@ -191,6 +191,7 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
   - [x] Hosting
   - [ ] SEO
   - [ ] Domain
+- [ ] Mobile
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -230,7 +231,7 @@ Web Designer: [https://github.com/JackMechem/](https://github.com/JackMechem/)
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* [Zane Mechem](https://zanemechem.com)
+<!-- Website Designed for: [Zane Mechem](https://zanemechem.com) and  -->
 <!--
 * []()
 * []() 
