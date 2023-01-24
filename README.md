@@ -180,9 +180,9 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 - [ ] Front End
   - [x] Product Card
   - [ ] Connect Snipcart
-  - [ ] Header
+  - [x] Header
     - [x] Inverted Title
-    - [ ] Infinate Scroll
+    - [x] Infinate Scroll
 - [ ] Firebase
   - [ ] Hosting
   - [ ] SEO
@@ -247,6 +247,6 @@ Web Designer: [https://github.com/JackMechem/](https://github.com/JackMechem/)
 [issues-url]: https://github.com/JackMechem/doem-front/issues
 [license-shield]: https://img.shields.io/github/license/JackMechem/doem-front.svg?style=for-the-badge
 [license-url]: https://github.com/JackMechem/doem-front/blob/main/LICENSE.md
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/demo.gif
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/

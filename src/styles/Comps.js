@@ -10,21 +10,30 @@ const HeaderContainer = styled.div`
 
     position: absolute;
     width: 100%;
-    height: 250px;
+    height: 300px;
     text-align: center;
 
+    top: 0px;
 
-    // border: solid red 2px;
+    overflow-x: hidden;
+
+    /* border: solid red 2px; */
 
     // background-image: url(${HeaderImage});
     // background-size: cover;
 `
 
 const HeaderBackgroundImage = styled.img`
+    position: absolute;
+
+
+    left: ${props => props.left ? "-100%" : "0px"};
 
     width: 100%;
     height: 100%;
     object-fit: scale-down;
+
+    /* border: solid red 1px; */
 `
 
 const HeaderText = styled.p`

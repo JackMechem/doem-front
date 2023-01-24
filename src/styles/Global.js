@@ -14,12 +14,12 @@ const ItemsContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
     gap: 50px;
 
     position: absolute;
-    padding: 50px 100px;
-    top: 250px;
+    padding: 40px 100px;
+    top: 300px;
     left: 0px;
     right: 0px;
     bottom: 0px;

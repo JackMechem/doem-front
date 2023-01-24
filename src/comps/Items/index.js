@@ -7,15 +7,18 @@ import React, { useEffect } from "react";
 import { ItemsContainer } from "../../styles/Global";
 import ItemCard from "../ItemCard";
 
-
+import Candle1 from "../../assets/candle1.jpg"
+import Candle2 from "../../assets/candle2.jpg"
+import Candle3 from "../../assets/candle3.jpg"
 
 const Items = () => {
 
 
 
-    return(<ItemsContainer>
-        <ItemCard name="Candle-1"/>
-        <ItemCard name="Candle-2"/>
+    return (<ItemsContainer>
+        <ItemCard name="Candle-1" image={Candle1} />
+        <ItemCard name="Candle-2" image={Candle2} />
+        <ItemCard name="Candle-3" image={Candle3}/>
     </ItemsContainer>)
 }
 
