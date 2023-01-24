@@ -182,7 +182,8 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
   - [ ] Header
     - [x] Inverted Title
     - [ ] Infinate Scroll
-- [ ] Firebase Hosting
+- [ ] Firebase
+  - [ ] Hosting
   - [ ] SEO
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
