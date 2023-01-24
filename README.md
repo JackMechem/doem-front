@@ -99,7 +99,7 @@
 
 ### Prerequisites
 
-* **npm**
+- **npm**
 
   Update npm
   ```sh
