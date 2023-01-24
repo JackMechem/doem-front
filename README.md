@@ -99,8 +99,9 @@
 
 ### Prerequisites
 
-* npm
+* **npm**
 
+  Update npm
   ```sh
   npm install npm@latest -g
   ```
