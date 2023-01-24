@@ -1,11 +1,15 @@
 import React from "react";
-import { ItemCardButtonPill, ItemCardContainer, ItemCardPhoto, ItemCardRightContainer } from "../../styles/Comps";
+import { ItemCardButtonPill, ItemCardContainer, ItemCardName, ItemCardPhoto, ItemCardRightContainer } from "../../styles/Comps";
 
-const ItemCard = () => {
+const ItemCard = (props) => {
+
+    const itemName = props.name;
+    const itemPhoto = props.image;
 
     return (<ItemCardContainer>
-        <ItemCardPhoto src="https://cdn.arhaus.com/product/StandardV2/650081C1002.jpg?preset=ProductLarge"/>
+        <ItemCardPhoto src={itemPhoto}/>
         <ItemCardRightContainer>
+            <ItemCardName>{itemName}</ItemCardName>
             <ItemCardButtonPill>Add to Cart</ItemCardButtonPill>
         </ItemCardRightContainer>
     </ItemCardContainer>)

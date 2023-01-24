@@ -27,7 +27,7 @@ const ItemsContainer = styled.div`
     overflow-y: scroll;
     overflow-x: hidden;
 
-    background-color: whitesmoke;
+    /* background-color: whitesmoke; */
 `
 
 export {

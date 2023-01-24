@@ -3,21 +3,19 @@ This file will contain the api requests to the backend (snipcart) in order to ge
 products.
 */
 
-import React from "react";
+import React, { useEffect } from "react";
 import { ItemsContainer } from "../../styles/Global";
 import ItemCard from "../ItemCard";
+
 
 
 const Items = () => {
 
 
+
     return(<ItemsContainer>
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
+        <ItemCard name="Candle-1"/>
+        <ItemCard name="Candle-2"/>
     </ItemsContainer>)
 }
 

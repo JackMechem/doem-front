@@ -53,14 +53,16 @@ const ItemCardContainer = styled.div`
     width: 650px;
     height: 250px;
 
-    border: solid red 2px;
+    /* border: solid red 2px; */
 `
 
 const ItemCardPhoto = styled.img`
     position: absolute;
-
+ 
     height: 250px;
     width: 250px;
+
+    /* border-radius: 10px; */
 
     background-color: black;
 `
@@ -75,7 +77,20 @@ const ItemCardRightContainer = styled.div`
 
     height: 100%;
 
-    border: solid blue 2px;
+    /* border: solid blue 2px; */
+`
+
+const ItemCardName = styled.p`
+    position: absolute;
+    margin: auto;
+
+    top: 40px;
+    left: 80px;
+
+    font-size: 30pt;
+    font-weight: normal;
+
+    color: ${Colors.foreground};
 `
 
 const ItemCardButtonPill = styled.button`
@@ -83,7 +98,7 @@ const ItemCardButtonPill = styled.button`
     height: 40px;
     width: 250px;
 
-    bottom: 30px;
+    bottom: 50px;
     /* right: 10px; */
     left: 80px;
 
@@ -94,7 +109,7 @@ const ItemCardButtonPill = styled.button`
 
     font-size: 18pt;
     font-weight: 500;
-    letter-spacing: 4px;
+    letter-spacing: 3px;
     text-align: left;
 
     border-radius: 90px;
@@ -123,5 +138,6 @@ export {
     ItemCardContainer,
     ItemCardPhoto,
     ItemCardRightContainer,
+    ItemCardName,
     ItemCardButtonPill
 }
