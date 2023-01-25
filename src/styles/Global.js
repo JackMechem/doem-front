@@ -12,13 +12,14 @@ const BackgroundContainter = styled.div`
 
 const ItemsContainer = styled.div`
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 
     gap: 50px;
 
     position: absolute;
-    padding: 40px 100px;
+    padding: 100px 100px;
     top: 300px;
     left: 0px;
     right: 0px;
@@ -26,6 +27,7 @@ const ItemsContainer = styled.div`
 
     overflow-y: scroll;
     overflow-x: hidden;
+
 
     /* background-color: whitesmoke; */
 `

@@ -9,7 +9,7 @@ import Colors from "./Colors";
 const HeaderContainer = styled.div`
 
     position: absolute;
-    width: 100%;
+    width: 100vw;
     height: 300px;
     text-align: center;
 
@@ -26,12 +26,11 @@ const HeaderContainer = styled.div`
 const HeaderBackgroundImage = styled.img`
     position: absolute;
 
+    left: ${props => props.left ? "-1920px" : "0px"};
 
-    left: ${props => props.left ? "-100%" : "0px"};
-
-    width: 100%;
+    width: 1920px;
     height: 100%;
-    object-fit: scale-down;
+    object-fit: cover;
 
     /* border: solid red 1px; */
 `
@@ -66,7 +65,6 @@ const ItemCardContainer = styled.div`
 `
 
 const ItemCardPhoto = styled.img`
-    position: absolute;
  
     height: 250px;
     width: 250px;

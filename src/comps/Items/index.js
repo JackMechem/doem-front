@@ -18,7 +18,6 @@ const Items = () => {
     return (<ItemsContainer>
         <ItemCard name="Candle-1" image={Candle1} />
         <ItemCard name="Candle-2" image={Candle2} />
-        <ItemCard name="Candle-3" image={Candle3}/>
     </ItemsContainer>)
 }
 

@@ -84,7 +84,7 @@
 ## About The Project
 
 [![Product Name Screen Shot][product-screenshot]](https://doem-products.firebaseapp.com/)
-*Screenshot updated on 1/23/2023*
+*Screenshot updated on 1/24/2023*
 
 
 ### Built With 
