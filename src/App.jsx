@@ -4,7 +4,6 @@ import Items from "./comps/Items";
 
 import { BackgroundContainter } from "./styles/Global";
 
-
 const App = () => {
     return (<BackgroundContainter>
         <Header />

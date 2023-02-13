@@ -12,9 +12,6 @@ import Candle2 from "../../assets/candle2.jpg"
 import Candle3 from "../../assets/candle3.jpg"
 
 const Items = () => {
-
-
-
     return (<ItemsContainer>
         <ItemCard name="Candle-1" image={Candle1} />
         <ItemCard name="Candle-2" image={Candle2} />

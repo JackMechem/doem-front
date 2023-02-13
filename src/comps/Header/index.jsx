@@ -5,9 +5,7 @@ import { motion } from "framer-motion";
 
 import HeaderImg from "../../assets/Header.jpg"
 
-
 const Header = () => {
-
 
     return (<HeaderContainer>
         <HeaderBackgroundImage as={motion.img} src={HeaderImg}
