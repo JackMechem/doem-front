@@ -1,12 +1,6 @@
 import { NextPage } from "next";
 
-interface Props {
-  props: {
-    product: string;
-  };
-}
-
-const ProductPage: NextPage<Props> = ({ props: product }) => {
+const ProductPage: NextPage = () => {
   return <div>Product</div>;
 };
 
