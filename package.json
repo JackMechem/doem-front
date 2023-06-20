@@ -18,6 +18,15 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "styled-components": "^6.0.0-rc.3",
+    "swell-js": "^3.22.1",
+    "swell-node": "^5.0.0",
     "typescript": "5.1.3"
+  },
+  "devDependencies": {
+    "@graphql-codegen/typescript-graphql-request": "^5.0.0",
+    "@types/styled-components": "^5.1.26",
+    "@types/swell-js": "^3.19.3",
+    "graphql-codegen": "^0.4.0",
+    "graphql-request": "^6.1.0"
   }
 }
