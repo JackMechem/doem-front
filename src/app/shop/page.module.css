@@ -1,0 +1,43 @@
+.container {
+    max-width: 80vw;
+    width: 80vw;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-right: solid #000000 1pt;
+    border-left: solid #000000 1pt;
+}
+
+.columnDivider {
+    position: absolute;
+    background-color: #000000;
+    height: 100%;
+    width: 1px;
+    left: 50%;
+}
+
+.card {
+    width: 100%;
+    padding: 20px;
+    position: relative;
+    height: auto;
+    border-bottom: 1px solid #000000;
+    border-right: 1px solid #000000;
+}
+
+.card:after {
+    content: "";
+    position: absolute;
+    border-left: 1px solid #000000;
+    right: 0px;
+    height: 100%;
+}
+
+.card:last-child:after {
+    display: none;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}

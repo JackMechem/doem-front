@@ -1,0 +1,48 @@
+.header {
+    position: relative;
+    top: 0px;
+    height: 55px;
+    width: 100vw;
+
+    background-color: #f3f2e2;
+    border-bottom: 1px solid #000000;
+}
+
+.logo {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    width: 55px;
+    padding: 7px 7px 7px 10px;
+}
+
+.logo:hover {
+    filter: brightness(160%);
+}
+
+.headerLinkContainer {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.headerLink {
+    margin: 0px 5vw;
+    display: flex;
+    flex-direction: row;
+    color: #1d3f1c;
+}
+
+.headerLink:hover {
+    filter: brightness(160%);
+}
+
+.headerLink img {
+    margin-right: 8px;
+    transform: translate(0%, 35%);
+    height: 14px;
+}
