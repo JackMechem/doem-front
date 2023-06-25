@@ -26,6 +26,7 @@ const ProductPageContent = ({ product: product }: { product: any }) => {
                     onClick={() => {
                         setCurrentVariation(index);
                     }}
+                    key={productVariation.id}
                 >
                     {productVariation.variation}
                 </button>
