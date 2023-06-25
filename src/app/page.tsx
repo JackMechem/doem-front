@@ -1,5 +1,4 @@
 import "./page.module.css";
-import { getProducts } from "@/lib/swell/products";
 import Link from "next/link";
 import Image from "next/image";
 

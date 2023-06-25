@@ -1,33 +1,76 @@
+import { graphcms } from "@/lib/graphcms/client";
+import { gql } from "graphql-request";
 import Link from "next/link";
 import styles from "./Header.module.css";
-import { getHeaderContent } from "@/lib/contentful/utils.js";
+
+const getHeaderContent = async () => {
+    const header = await graphcms.request(
+        gql`
+            query HeaderQuery($name: String!) {
+                header(where: { name: $name }) {
+                    name
+                    logo {
+                        id
+                        url
+                        width
+                        height
+                    }
+                    shopLogo {
+                        id
+                        url
+                        width
+                        height
+                    }
+                    policyLogo {
+                        id
+                        url
+                        width
+                        height
+                    }
+                    aboutLogo {
+                        id
+                        url
+                        width
+                        height
+                    }
+                }
+            }
+        `,
+        {
+            name: "header",
+        }
+    );
+
+    return header.header;
+};
 
 const Header = async () => {
     const headerContent = await getHeaderContent();
+    console.log(headerContent);
     return (
         <div className={styles.header}>
             <Link href={"/"}>
                 <div className={styles.logo}>
-                    <img src={headerContent[0].fields.logo.fields.file.url} height="100%" />
+                    <img src={headerContent.logo.url} height="100%" />
                 </div>
             </Link>
 
             <div className={styles.headerLinkContainer}>
                 <Link href={"/shop"}>
                     <div className={styles.headerLink}>
-                        <img src={headerContent[0].fields.shopLogo.fields.file.url} />
+                        <img src={headerContent.shopLogo.url} />
                         SHOP
                     </div>
                 </Link>
                 <Link href={"/policy"}>
                     <div className={styles.headerLink}>
-                        <img src={headerContent[0].fields.policyLogo.fields.file.url} />
+                        <img src={headerContent.policyLogo.url} />
                         POLICY
                     </div>
                 </Link>
                 <Link href={"/about"}>
                     <div className={styles.headerLink}>
-                        <img src={headerContent[0].fields.aboutLogo.fields.file.url} />
+                        <img src={headerContent.aboutLogo.url} />
                         ABOUT
                     </div>
                 </Link>

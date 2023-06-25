@@ -4,8 +4,9 @@
     margin: auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    border-right: solid #000000 1pt;
     border-left: solid #000000 1pt;
+    border-bottom: solid #000000 1px;
+    gap: 1px;
 }
 
 .columnDivider {
@@ -21,8 +22,7 @@
     padding: 20px;
     position: relative;
     height: auto;
-    border-bottom: 1px solid #000000;
-    border-right: 1px solid #000000;
+    outline: 1px solid #000000;
 }
 
 .card:after {

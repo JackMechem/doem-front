@@ -2,7 +2,7 @@ import "./globals.css";
 import { Jost } from "next/font/google";
 import Header from "./components/header";
 
-const jost = Jost({ subsets: ["latin"], display: "swap" });
+const jost = Jost({ subsets: ["latin"] });
 
 export const metadata = {
     title: "Doem",

@@ -35,4 +35,4 @@ yarn-error.log*
 next-env.d.ts
 
 # Graphql
-.graphqlrc.yml
+graphql.config.ts

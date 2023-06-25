@@ -8,6 +8,12 @@ const nextConfig = {
                 port: "",
                 pathname: "/doem/**",
             },
+            {
+                protocol: "https",
+                hostname: "media.graphassets.com",
+                port: "",
+                pathname: "/**",
+            },
         ],
     },
 };
