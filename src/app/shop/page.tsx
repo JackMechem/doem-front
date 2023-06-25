@@ -51,7 +51,7 @@ const Shop = async () => {
                     productVariations: any[];
                 }) => (
                     <Link key={id} href={`/product/${slug}`}>
-                        <div className={styles.card}>
+                        <div key={id} className={styles.card}>
                             <Image
                                 src={productVariations[0].images[0].url}
                                 width={productVariations[0].images[0].width}
@@ -68,7 +68,7 @@ const Shop = async () => {
                             <div>
                                 Variants:{" "}
                                 {productVariations.map((variation: any) => (
-                                    <div>{variation.variation}</div>
+                                    <div key={variation.variation}>{variation.variation}</div>
                                 ))}
                             </div>
                         </div>
