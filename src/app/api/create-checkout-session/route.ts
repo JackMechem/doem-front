@@ -6,10 +6,10 @@ const graphcms = new GraphQLClient(`${process.env.GRAPH_CMS_ENDPOINT}`);
 
 import { NextResponse } from "next/server";
 
-export async function POST(request) {
+export async function POST(request: Request) {
     const { slug } = await request.json();
     console.log("data: ", slug);
-    const product = await graphcms.request(
+    const product: any = await graphcms.request(
         gql`
             query ProductVariationQuery($slug: String!) {
                 productVariation(where: { slug: $slug }) {
