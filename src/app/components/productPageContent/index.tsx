@@ -3,14 +3,27 @@
 import Image from "next/image";
 import styles from "./ProductPageContent.module.css";
 import { useState } from "react";
-import BuyButton from "./buyButton";
+import BuyButton from "../buyButton";
+import { useCartStore } from "@/store/cartStore";
+import { CartProduct, IProduct } from "@/types";
+import Hydration from "../hydration";
+import AddToCartButton from "../addToCartButton";
 
 const ProductPageContent = ({ product: product }: { product: any }) => {
     const [currentVariation, setCurrentVariation] = useState(0);
+    const { cartProducts, addToCart, removeFromCart } = useCartStore();
+
+    const productInfo: CartProduct = {
+        name: product.productVariations[currentVariation].name,
+        slug: product.productVariations[currentVariation].slug,
+        price: product.productVariations[currentVariation].price,
+        quantity: 1,
+    };
 
     return (
-        <div>
+        <Hydration>
             <h1>{product.name}</h1>
+
             <h3>Product Variation: {product.productVariations[currentVariation].name}</h3>
             <Image
                 src={product.productVariations[currentVariation].images[0].url}
@@ -31,6 +44,8 @@ const ProductPageContent = ({ product: product }: { product: any }) => {
                     {productVariation.variation}
                 </button>
             ))}
+            <AddToCartButton cartInfo={productInfo}>add to cart {"-"}</AddToCartButton>
+            {/*
             <BuyButton
                 slug={product.productVariations[currentVariation].slug}
                 buttonText={
@@ -44,7 +59,8 @@ const ProductPageContent = ({ product: product }: { product: any }) => {
                     )
                 }
             />
-        </div>
+            */}
+        </Hydration>
     );
 };
 

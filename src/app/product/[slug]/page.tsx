@@ -69,7 +69,6 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
     const { slug } = params;
     const product = await getProduct(slug);
 
-    console.log(product);
     return (
         <div>
             <ProductPageContent product={product} />

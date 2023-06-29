@@ -1,6 +1,7 @@
 import { graphcms } from "@/lib/graphcms/client";
 import { gql } from "graphql-request";
 import Link from "next/link";
+import Cart from "../cart";
 import styles from "./Header.module.css";
 
 const getHeaderContent = async () => {
@@ -46,7 +47,6 @@ const getHeaderContent = async () => {
 
 const Header = async () => {
     const headerContent = await getHeaderContent();
-    console.log(headerContent);
     return (
         <div className={styles.header}>
             <Link href={"/"}>
@@ -74,6 +74,9 @@ const Header = async () => {
                         ABOUT
                     </div>
                 </Link>
+            </div>
+            <div>
+                <Cart />
             </div>
         </div>
     );
