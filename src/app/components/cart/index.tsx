@@ -26,10 +26,9 @@ const Cart = () => {
                 cartProducts: [...cartProducts],
             }),
         }).then((resp) => resp.json());
-        console.log("session id: ", session.id);
 
         await stripe?.redirectToCheckout({
-            sessionId: session.id,
+            sessionId: session.session.id,
         });
     };
 

@@ -6,8 +6,6 @@ import { IProduct } from "@/types";
 const stripe = new Stripe(`${process.env.STRIPE_SECRET_KEY}`, { apiVersion: "2022-11-15" });
 
 import { NextResponse } from "next/server";
-import { cart } from "swell-js";
-import { LineItem } from "@stripe/stripe-js";
 
 export async function POST(request: Request) {
     const { cartProducts } = await request.json();
@@ -75,12 +73,14 @@ export async function POST(request: Request) {
             return pros;
         };
         try {
-            const itemCreations = await itemsCreation();
+            await itemsCreation();
         } catch {}
         const line_items = await line_items_temp();
+        const success_url = `${process.env.VERCEL_URL}/?id={CHECKOUT_SESSION_ID}`;
+        const cancel_url = `${process.env.VERCEL_URL}/shop`;
         const session = await stripe.checkout.sessions.create({
-            success_url: "http://localhost:3000/?id={CHECKOUT_SESSION_ID}",
-            cancel_url: `http://localhost:3000/shop`,
+            success_url,
+            cancel_url,
             mode: "payment",
             payment_method_types: ["card", "cashapp"],
             line_items,
@@ -98,7 +98,7 @@ export async function POST(request: Request) {
             },
         });
 
-        return NextResponse.json(session);
+        return NextResponse.json({ message: "Success", session: session });
     } catch (e) {
         return NextResponse.json({ error: { message: e } });
     }
