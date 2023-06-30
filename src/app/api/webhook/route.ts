@@ -5,7 +5,7 @@ import { GraphQLClient } from "graphql-request";
 
 const graphcms = new GraphQLClient(`${process.env.GRAPH_CMS_ENDPOINT}`, {
     headers: {
-        Authorization: `Bearer ${process.env.STRIPE_MUTATION_AUTH}`,
+        Authorization: `${process.env.STRIPE_MUTATION_AUTH}`,
     },
 });
 const stripe = new Stripe(`${process.env.STRIPE_SECRET_KEY}`, { apiVersion: "2022-11-15" });
@@ -58,7 +58,7 @@ export async function POST(request: Request) {
 
     const trackingNumber = boughtShipment.tracking_code;
 
-    const { order }: { order: any } = await graphcms.request(
+    await graphcms.request(
         `
             mutation CreateOrderMutation($data: OrderCreateInput!) {
                 createOrder(data: $data) {
@@ -77,6 +77,7 @@ export async function POST(request: Request) {
                 total: session.amount_total,
                 stripeCheckoutId: session.id,
                 trackingNumber,
+                shipped: false,
                 address: {
                     create: {
                         country: address?.country,
@@ -104,5 +105,5 @@ export async function POST(request: Request) {
         }
     );
 
-    NextResponse.json({ order });
+    return NextResponse.json({ message: "Success", shipment: boughtShipment });
 }
