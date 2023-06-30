@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-import EasyPostClient from "@easypost/api/";
+import EasyPostClient, { IRate, Shipment } from "@easypost/api/";
 import { GraphQLClient } from "graphql-request";
 
 const graphcms = new GraphQLClient(`${process.env.GRAPH_CMS_ENDPOINT}`, {
@@ -52,7 +52,15 @@ export async function POST(request: Request) {
         },
     });
 
-    const boughtShipment = await client.Shipment.buy(shipment.id, shipment.rates[0]);
+    const rates = await client.Shipment.regenerateRates(shipment.id);
+
+    const lowestRate = rates.rates.reduce((prev, curr) => {
+        return Number(prev.rate) < Number(curr.rate) ? prev : curr;
+    });
+
+    console.log("lowest rate: ", lowestRate);
+
+    const boughtShipment = await client.Shipment.buy(shipment.id, lowestRate);
 
     console.log("bought shipment", boughtShipment);
 
