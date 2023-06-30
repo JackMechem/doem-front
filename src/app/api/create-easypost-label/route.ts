@@ -43,11 +43,11 @@ export async function POST(request: Request) {
         },
     });
 
+    console.log(shipment);
+
     const boughtShipment = await client.Shipment.buy(shipment.id, shipment.rates[0]);
 
     console.log("bought shipment", boughtShipment);
 
     return NextResponse.json({ message: stripeSession });
-
-    console.log("stripe session:: ", stripeSession);
 }

@@ -76,10 +76,8 @@ export async function POST(request: Request) {
         };
         try {
             const itemCreations = await itemsCreation();
-            console.log("item creations ", itemCreations);
         } catch {}
         const line_items = await line_items_temp();
-        console.log(line_items);
         const session = await stripe.checkout.sessions.create({
             success_url: "http://localhost:3000/?id={CHECKOUT_SESSION_ID}",
             cancel_url: `http://localhost:3000/shop`,
