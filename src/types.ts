@@ -1,4 +1,4 @@
-export type CartProduct = {
+export interface CartProduct {
     name: string;
     price: number;
     slug: string;
@@ -7,7 +7,7 @@ export type CartProduct = {
         id?: number;
         url: string;
     };
-};
+}
 
 export interface IProduct {
     name?: string;
@@ -16,7 +16,7 @@ export interface IProduct {
     productVariations: ProductVariation[];
 }
 
-export type ProductVariation = {
+export interface ProductVariation {
     name: string;
     price: number;
     slug: string;
@@ -31,4 +31,4 @@ export type ProductVariation = {
             height?: number;
         }
     ];
-};
+}

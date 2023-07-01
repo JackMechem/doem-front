@@ -34,30 +34,22 @@
 }
 
 .leftContainer {
-    display: flex;
+    display: inline-block;
+    position: relative;
+    align-content: flex-start;
     height: 100%;
     width: 100%;
     border-right: solid #000000 1px;
     border-bottom: solid #000000 1px;
-}
-
-.leftContainer img {
-    display: inline-block;
-    width: auto;
-    height: auto;
-    max-height: 90vh;
-    margin-right: 10px;
-    outline: solid #000000 1px;
     padding: 10px;
 }
 
-.rightContainer {
-    padding-left: 90px;
+.leftContainer img {
+    width: 60%;
+    height: auto;
 }
 
-.rightContainer .name {
-    margin-top: 50px;
-    margin-bottom: 30px;
-    font-size: 30pt;
-    text-transform: lowercase;
+.rightContainer {
+    position: relative;
+    padding: 10px 20px 10px 90px;
 }

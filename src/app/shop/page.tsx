@@ -48,18 +48,19 @@ const Shop = async () => {
                             height={productVariations[0].images![0].height}
                             alt=""
                         />
-                        <p>{name}</p>
-                        <p>
-                            {(productVariations[0].price / 100).toLocaleString("en-US", {
-                                style: "currency",
-                                currency: "USD",
-                            }) ?? "Price Not Avalible"}
-                        </p>
-                        <div>
-                            Variants:{" "}
-                            {productVariations.map((variation: any) => (
-                                <div key={variation.variation}>{variation.variation}</div>
-                            ))}
+                        <div className={styles.infoContainer}>
+                            <div className={styles.name}>{name}</div>
+                            <div className={styles.price}>
+                                {(productVariations[0].price / 100).toLocaleString("en-US", {
+                                    style: "currency",
+                                    currency: "USD",
+                                }) ?? "Price Not Avalible"}
+                            </div>
+                            <div className={styles.variations}>
+                                {productVariations.map((variation: any) => (
+                                    <div key={variation.variation}>{variation.variation}</div>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </Link>
