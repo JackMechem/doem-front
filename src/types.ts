@@ -11,19 +11,24 @@ export type CartProduct = {
 
 export interface IProduct {
     name?: string;
+    id?: string;
     slug: string;
-    productVariation: ProductVariation;
+    productVariations: ProductVariation[];
 }
 
 export type ProductVariation = {
     name: string;
     price: number;
     slug: string;
+    description?: string;
+    id?: string;
     variation?: "Cream" | "Green" | "White";
     images?: [
         {
             id?: number;
             url: string;
+            width?: number;
+            height?: number;
         }
     ];
 };

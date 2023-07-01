@@ -1,11 +1,10 @@
 import { GraphQLClient, gql } from "graphql-request";
 import Stripe from "stripe";
 import { graphcms } from "@/lib/graphcms/client";
-import { IProduct } from "@/types";
+import { CartProduct, IProduct, ProductVariation } from "@/types";
+import { NextResponse } from "next/server";
 
 const stripe = new Stripe(`${process.env.STRIPE_SECRET_KEY}`, { apiVersion: "2022-11-15" });
-
-import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
     const { cartProducts } = await request.json();
@@ -15,7 +14,7 @@ export async function POST(request: Request) {
     });
 
     console.log("data: ", cartProducts);
-    const products: any = await graphcms.request(
+    const { productVariations }: { productVariations: ProductVariation[] } = await graphcms.request(
         gql`
             query ProductVariationQuery($slug: [String]!) {
                 productVariations(where: { slug_in: $slug }) {
@@ -36,10 +35,10 @@ export async function POST(request: Request) {
     try {
         const itemsCreation = () => {
             const items = Promise.all(
-                products.productVariations.map(async (product: any) => {
+                productVariations.map(async (product: ProductVariation) => {
                     const item = await stripe.products.create({
                         id: product.slug,
-                        name: product.name,
+                        name: product.name!,
                         tax_code: "txcd_99999999",
                         default_price_data: {
                             currency: "usd",
@@ -56,7 +55,7 @@ export async function POST(request: Request) {
         };
         const line_items_temp = () => {
             const pros = Promise.all(
-                cartProducts.map(async (pro: any) => {
+                cartProducts.map(async (pro: CartProduct) => {
                     try {
                         const stripeProduct: Stripe.Response<Stripe.Product> =
                             await stripe.products.retrieve(pro.slug);
@@ -65,7 +64,7 @@ export async function POST(request: Request) {
                             quantity: pro.quantity,
                         };
                         return line_item;
-                    } catch (e) {
+                    } catch (e: any) {
                         console.log(e);
                     }
                 })
@@ -75,28 +74,29 @@ export async function POST(request: Request) {
         try {
             await itemsCreation();
         } catch {}
-        const line_items = await line_items_temp();
-        const success_url = `https://${process.env.VERCEL_URL}/?id={CHECKOUT_SESSION_ID}`;
-        const cancel_url = `https://${process.env.VERCEL_URL}/shop`;
-        const session = await stripe.checkout.sessions.create({
-            success_url,
-            cancel_url,
-            mode: "payment",
-            payment_method_types: ["card", "cashapp"],
-            line_items,
-            shipping_options: [
-                {
-                    shipping_rate_data: {
-                        display_name: "Ground",
-                        type: "fixed_amount",
-                        fixed_amount: { amount: 700, currency: "USD" },
+        const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = await line_items_temp();
+        const success_url: string = `https://${process.env.VERCEL_URL}/?id={CHECKOUT_SESSION_ID}`;
+        const cancel_url: string = `https://${process.env.VERCEL_URL}/shop`;
+        const session: Stripe.Response<Stripe.Checkout.Session> =
+            await stripe.checkout.sessions.create({
+                success_url,
+                cancel_url,
+                mode: "payment",
+                payment_method_types: ["card", "cashapp"],
+                line_items,
+                shipping_options: [
+                    {
+                        shipping_rate_data: {
+                            display_name: "Ground",
+                            type: "fixed_amount",
+                            fixed_amount: { amount: 700, currency: "USD" },
+                        },
                     },
+                ],
+                shipping_address_collection: {
+                    allowed_countries: ["US"],
                 },
-            ],
-            shipping_address_collection: {
-                allowed_countries: ["US"],
-            },
-        });
+            });
 
         return NextResponse.json({ message: "Success", session: session });
     } catch (e) {
