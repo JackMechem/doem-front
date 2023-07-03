@@ -4,8 +4,8 @@
     margin: auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    border-left: solid #000000 1pt;
-    border-bottom: solid #000000 1px;
+    border-left: solid #677069 1pt;
+    border-bottom: solid #677069 1px;
     gap: 1px;
 }
 
@@ -22,13 +22,13 @@
     padding: 15px;
     position: relative;
     height: auto;
-    outline: 1px solid #000000;
+    outline: 1px solid #677069;
 }
 
 .card:after {
     content: "";
     position: absolute;
-    border-left: 1px solid #000000;
+    border-left: 1px solid #677069;
     right: 0px;
     height: 100%;
 }
@@ -58,7 +58,7 @@
 }
 
 .card .infoContainer .price {
-    margin-right: 0px;
+    margin-right: 10px;
     margin-left: auto;
 }
 

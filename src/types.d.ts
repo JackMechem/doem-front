@@ -32,3 +32,21 @@ export interface ProductVariation {
         }
     ];
 }
+
+export interface IRockButtons {
+    name: string;
+    slug: string;
+    rockImages: RockImage[];
+}
+
+export interface RockImage {
+    id: string;
+    name: string;
+    variation: "Green" | "Cream" | "White";
+    image: {
+        id: string;
+        width: number;
+        height: number;
+        url: string;
+    };
+}

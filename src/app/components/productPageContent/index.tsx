@@ -5,11 +5,17 @@ import styles from "./ProductPageContent.module.css";
 import { useState } from "react";
 import BuyButton from "../buyButton";
 import { useCartStore } from "@/store/cartStore";
-import { CartProduct, IProduct } from "@/types";
+import { CartProduct, IProduct, IRockButtons, ProductVariation, RockImage } from "@/types";
 import Hydration from "../hydration";
 import AddToCartButton from "../addToCartButton";
 
-const ProductPageContent = ({ product: product }: { product: any }) => {
+const ProductPageContent = ({
+    product: product,
+    rockButtons: rockButtons,
+}: {
+    product: any;
+    rockButtons: IRockButtons;
+}) => {
     const [currentVariation, setCurrentVariation] = useState(0);
     const { cartProducts, addToCart, removeFromCart } = useCartStore();
 
@@ -23,27 +29,39 @@ const ProductPageContent = ({ product: product }: { product: any }) => {
     return (
         <Hydration>
             <div className={styles.leftContainer}>
-                <Image
-                    src={product.productVariations[currentVariation].images[0].url}
-                    width={product.productVariations[currentVariation].images[0].width}
-                    height={product.productVariations[currentVariation].images[0].height}
-                    alt={""}
-                />
+                <div className={styles.imageContainer}>
+                    <Image
+                        src={product.productVariations[currentVariation].images[0].url}
+                        width={product.productVariations[currentVariation].images[0].width}
+                        height={product.productVariations[currentVariation].images[0].height}
+                        alt="none"
+                    />
+                </div>
                 <div className={styles.rightContainer}>
                     <div className={styles.name}>{product.name}</div>
-                    <div>Product Variation: {product.productVariations[currentVariation].name}</div>
-                    <label>Variations:</label>
-                    {product.productVariations.map((productVariation: any, index: number) => (
-                        <button
-                            onClick={() => {
-                                setCurrentVariation(index);
-                            }}
-                            key={productVariation.id}
-                        >
-                            {productVariation.variation}
-                        </button>
-                    ))}
-                    <p>{product.productVariations[0].description}</p>
+                    <div className={styles.productVariation}>
+                        {product.productVariations[currentVariation].name}
+                    </div>
+                    <div className={styles.variationContainer}>
+                        {rockButtons.rockImages.map((rockImage: RockImage, index: number) => (
+                            <div className={styles.rockContainer} key={rockImage.id}>
+                                <Image
+                                    src={rockImage.image.url}
+                                    width={rockImage.image.width}
+                                    height={rockImage.image.height}
+                                    alt=""
+                                    className={styles.variationButton}
+                                    onClick={() => {
+                                        setCurrentVariation(index);
+                                    }}
+                                ></Image>
+                                <p className={styles.underText}>{rockImage.variation}</p>
+                            </div>
+                        ))}
+                    </div>
+                    <div className={styles.description}>
+                        {product.productVariations[0].description}
+                    </div>
                     <AddToCartButton cartInfo={productInfo}>add to cart {"-"}</AddToCartButton>
                 </div>
             </div>
