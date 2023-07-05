@@ -42,7 +42,9 @@
     padding: 10px;
     width: fit-content;
     height: 100%;
+    width: auto;
     outline: solid #677069 1px;
+    margin-bottom: 1px;
     align-self: center;
     justify-self: center;
 }
@@ -56,16 +58,17 @@
 
 .name {
     margin-top: 50px;
-    font-size: 30pt;
+    font-size: 33pt;
     text-transform: lowercase;
+    letter-spacing: -1.3px;
 }
 
 .productVariation {
-    margin-bottom: 30px;
-    margin-left: 5px;
+    margin-left: 2.8px;
     color: #474040;
     line-height: 5px;
     font-size: 10pt;
+    text-transform: lowercase;
 }
 
 .variationContainer {
@@ -74,19 +77,21 @@
     height: 80px;
     align-items: center;
     justify-content: center;
+    margin-top: 30px;
 }
 
 .rockContainer {
     display: flex;
     flex-direction: column;
     height: 100%;
+    margin-left: -30px;
     align-items: center;
     justify-content: center;
 }
 
 .rockContainer .underText {
     display: flex;
-    text-transform: uppercase;
+    text-transform: lowercase;
     margin-bottom: 0px;
     margin-top: auto;
     font-size: 10pt;
@@ -95,13 +100,15 @@
 
 .variationButton {
     position: relative;
-    margin: auto 20px 10px 20px;
+    margin: auto 30px 10px 30px;
     height: auto;
     max-width: 50px;
     cursor: pointer;
 }
 
 .description {
-    margin-top: 20px;
+    margin-top: 30px;
     margin-bottom: 60px;
+    width: 70%;
+    white-space: pre-wrap;
 }

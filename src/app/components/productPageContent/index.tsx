@@ -3,11 +3,11 @@
 import Image from "next/image";
 import styles from "./ProductPageContent.module.css";
 import { useState } from "react";
-import BuyButton from "../buyButton";
 import { useCartStore } from "@/store/cartStore";
 import { CartProduct, IProduct, IRockButtons, ProductVariation, RockImage } from "@/types";
 import Hydration from "../hydration";
 import AddToCartButton from "../addToCartButton";
+import ReactMarkdown from "react-markdown";
 
 const ProductPageContent = ({
     product: product,
@@ -47,8 +47,8 @@ const ProductPageContent = ({
                             <div className={styles.rockContainer} key={rockImage.id}>
                                 <Image
                                     src={rockImage.image.url}
-                                    width={rockImage.image.width}
-                                    height={rockImage.image.height}
+                                    width={100}
+                                    height={100}
                                     alt=""
                                     className={styles.variationButton}
                                     onClick={() => {
@@ -59,9 +59,9 @@ const ProductPageContent = ({
                             </div>
                         ))}
                     </div>
-                    <div className={styles.description}>
-                        {product.productVariations[0].description}
-                    </div>
+                    <ReactMarkdown className={styles.description}>
+                        {product.productVariations[currentVariation].description}
+                    </ReactMarkdown>
                     <AddToCartButton cartInfo={productInfo}>add to cart {"-"}</AddToCartButton>
                 </div>
             </div>
