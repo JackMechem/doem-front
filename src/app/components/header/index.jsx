@@ -51,12 +51,7 @@ const Header = async () => {
         <div className={styles.header}>
             <Link href={"/"}>
                 <div className={styles.logo}>
-                    <img
-                        src={headerContent.logo.url}
-                        height="100%"
-                        loading="eager"
-                        decoding="async"
-                    />
+                    <img src={headerContent.logo.url} height="100%" />
                 </div>
             </Link>
 

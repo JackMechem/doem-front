@@ -26,34 +26,45 @@
 }
 
 .leftContainer {
-    display: flex;
+    position: relative;
     width: 100%;
+    display: flex;
+    height: auto;
+    max-height: 90vh;
+    border-bottom: solid #677069 1px;
+    margin-bottom: 20px;
 }
 
 .imageContainer img {
-    max-width: 40vw;
     width: auto;
-    max-height: 90vh;
-    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    height: min-content;
     vertical-align: bottom;
+    padding: 10px;
+    padding-bottom: auto;
+    display: flex;
+    margin-left: auto;
+    border-left: solid #677069 1px;
 }
 
 .imageContainer {
-    padding: 10px;
-    width: fit-content;
-    height: 100%;
-    width: auto;
-    outline: solid #677069 1px;
+    width: 40%;
+    height: auto;
     margin-bottom: 1px;
-    align-self: center;
-    justify-self: center;
+    float: left;
+    display: flex;
 }
 
 .rightContainer {
+    width: calc(100% - 40%);
+    height: auto;
+    display: flex;
+    flex-direction: column;
     border-left: solid #677069 1px;
-    border-bottom: solid #677069 1px;
     padding-left: 70px;
     padding-right: 70px;
+    float: right;
 }
 
 .name {

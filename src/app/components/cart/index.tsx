@@ -50,7 +50,12 @@ const Cart = () => {
                 </div>
 
                 {cartIsVisible && (
-                    <div className={styles.cartMenu}>
+                    <div
+                        className={styles.cartMenu}
+                        onMouseLeave={() => {
+                            setCartIsVisible((c) => !c);
+                        }}
+                    >
                         {cartProducts
                             ? cartProducts.map((cartProduct) => (
                                   <div key={cartProduct.slug} className={styles.cartMenuItem}>

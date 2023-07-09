@@ -50,3 +50,20 @@ export interface RockImage {
         url: string;
     };
 }
+
+export interface IPage {
+    id: string;
+    slug: string;
+    title: string;
+    body: IPageBody[];
+    headerLogo: {
+        id: string;
+        width: number;
+        height: number;
+        url: string;
+    };
+}
+
+export interface IPageBody {
+    markdown: string;
+}
