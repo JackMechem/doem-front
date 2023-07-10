@@ -57,19 +57,19 @@
 
 .leftArrow {
     position: absolute;
-    bottom: 10px;
+    top: 10px;
     right: calc((100% - 40%) + 50px);
     font-size: 50px;
-    color: #2e652d;
+    color: #ffffff;
     cursor: pointer;
 }
 
 .rightArrow {
     position: absolute;
-    bottom: 10px;
+    top: 10px;
     right: calc((100% - 40%) + 10px);
     font-size: 50px;
-    color: #2e652d;
+    color: #ffffff;
     cursor: pointer;
 }
 
