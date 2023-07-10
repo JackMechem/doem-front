@@ -1,0 +1,44 @@
+.mainContainer {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainContainer img {
+    margin-right: 20%;
+}
+
+.mainContainer .rightContainer .companyName {
+    font-size: 80px;
+    letter-spacing: -2.5px;
+}
+
+.mainContainer .rightContainer .description {
+    white-space: pre-wrap;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+}
+
+.mainContainer .rightContainer img {
+    height: 50px;
+    width: auto;
+    margin-top: 40px;
+    align-self: center;
+    justify-self: center;
+}
+
+.mainContainer .rightContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

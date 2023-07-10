@@ -67,3 +67,25 @@ export interface IPage {
 export interface IPageBody {
     markdown: string;
 }
+
+export interface ILandingPage {
+    backgroundColor: {
+        css: string;
+        hex: string;
+    };
+    slug: string;
+    companyName: string;
+    description: string;
+    candleGif: {
+        id: string;
+        width: number;
+        height: number;
+        url: string;
+    };
+    rockButton: {
+        id: string;
+        width: number;
+        height: number;
+        url: string;
+    };
+}
