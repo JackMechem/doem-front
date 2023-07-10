@@ -8,6 +8,7 @@ import { CartProduct, IProduct, IRockButtons, ProductVariation, RockImage } from
 import Hydration from "../hydration";
 import AddToCartButton from "../addToCartButton";
 import ReactMarkdown from "react-markdown";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 const ProductPageContent = ({
     product: product,
@@ -17,6 +18,9 @@ const ProductPageContent = ({
     rockButtons: IRockButtons;
 }) => {
     const [currentVariation, setCurrentVariation] = useState(0);
+    const [showImageHandles, setShowImageHandles] = useState(false);
+    const [imageIndex, setImageIndex] = useState(0);
+
     const { cartProducts, addToCart, removeFromCart } = useCartStore();
 
     const productInfo: CartProduct = {
@@ -29,13 +33,51 @@ const ProductPageContent = ({
     return (
         <Hydration>
             <div className={styles.leftContainer}>
-                <div className={styles.imageContainer}>
-                    <Image
-                        src={product.productVariations[currentVariation].images[0].url}
-                        width={product.productVariations[currentVariation].images[0].width}
-                        height={product.productVariations[currentVariation].images[0].height}
+                <div
+                    className={styles.imageContainer}
+                    onMouseEnter={() => {
+                        setShowImageHandles(true);
+                    }}
+                    onMouseLeave={() => {
+                        setShowImageHandles(false);
+                    }}
+                >
+                    <img
+                        src={product.productVariations[currentVariation].images[imageIndex].url}
+                        width={product.productVariations[currentVariation].images[imageIndex].width}
+                        height={
+                            product.productVariations[currentVariation].images[imageIndex].height
+                        }
                         alt="none"
-                    />
+                    ></img>
+                    {showImageHandles && (
+                        <div>
+                            <div
+                                className={styles.leftArrow}
+                                onClick={() => {
+                                    if (imageIndex > 0) {
+                                        setImageIndex((c) => c - 1);
+                                    }
+                                }}
+                            >
+                                <IoIosArrowBack />
+                            </div>
+                            <div
+                                className={styles.rightArrow}
+                                onClick={() => {
+                                    if (
+                                        imageIndex <
+                                        product.productVariations[currentVariation].images.length -
+                                            1
+                                    ) {
+                                        setImageIndex((c) => c + 1);
+                                    }
+                                }}
+                            >
+                                <IoIosArrowForward />
+                            </div>
+                        </div>
+                    )}
                 </div>
                 <div className={styles.rightContainer}>
                     <div className={styles.name}>{product.name}</div>
@@ -45,7 +87,7 @@ const ProductPageContent = ({
                     <div className={styles.variationContainer}>
                         {rockButtons.rockImages.map((rockImage: RockImage, index: number) => (
                             <div className={styles.rockContainer} key={rockImage.id}>
-                                <Image
+                                <img
                                     src={rockImage.image.url}
                                     width={100}
                                     height={100}
@@ -53,8 +95,9 @@ const ProductPageContent = ({
                                     className={styles.variationButton}
                                     onClick={() => {
                                         setCurrentVariation(index);
+                                        setImageIndex(0);
                                     }}
-                                ></Image>
+                                ></img>
                                 <p className={styles.underText}>{rockImage.variation}</p>
                             </div>
                         ))}

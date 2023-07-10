@@ -4,6 +4,9 @@ import styles from "./page.module.css";
 import { gql } from "graphql-request";
 import { graphcms } from "@/lib/graphcms/client";
 import { IProduct } from "@/types";
+import { useState } from "react";
+import { NextPage } from "next";
+import ProductCard from "../components/productCard";
 
 const getProducts = async () => {
     const { products: products }: { products: IProduct[] } = await graphcms.request(
@@ -37,33 +40,11 @@ const getProducts = async () => {
 
 const Shop = async () => {
     const products = await getProducts();
+
     return (
         <div className={styles.container}>
-            {products.map(({ id, name, slug, productVariations }) => (
-                <Link key={id} href={`/shop/${slug}`}>
-                    <div key={id} className={styles.card}>
-                        <Image
-                            src={productVariations[0].images![0].url}
-                            width={productVariations[0].images![0].width}
-                            height={productVariations[0].images![0].height}
-                            alt=""
-                        />
-                        <div className={styles.infoContainer}>
-                            <div className={styles.name}>{name}</div>
-                            <div className={styles.price}>
-                                {(productVariations[0].price / 100).toLocaleString("en-US", {
-                                    style: "currency",
-                                    currency: "USD",
-                                }) ?? "Price Not Avalible"}
-                            </div>
-                            <div className={styles.variations}>
-                                {productVariations.map((variation: any) => (
-                                    <div key={variation.variation}>{variation.variation}</div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </Link>
+            {products.map((product) => (
+                <ProductCard product={product} key={product.id} />
             ))}
         </div>
     );

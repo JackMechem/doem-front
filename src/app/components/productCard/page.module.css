@@ -1,5 +1,6 @@
 .container {
-    width: fit-content;
+    max-width: 80vw;
+    width: 80vw;
     margin: auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -17,7 +18,7 @@
 }
 
 .card {
-    width: 100%;
+    width: 35vw;
     padding: 15px;
     position: relative;
     height: auto;
@@ -38,8 +39,9 @@
 
 .card img {
     width: 100%;
-    height: auto;
+    height: 25vw;
     margin-bottom: 0px;
+    object-fit: cover;
 }
 
 .card .infoContainer {
@@ -69,5 +71,5 @@
 }
 
 .card .infoContainer .variations div {
-    margin: 0px 10px;
+    padding: 0px 10px;
 }

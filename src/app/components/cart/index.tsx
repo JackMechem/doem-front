@@ -7,6 +7,7 @@ import { BsCart2 } from "react-icons/bs";
 import { FiTrash2 } from "react-icons/fi";
 import Hydration from "../hydration";
 import { loadStripe } from "@stripe/stripe-js";
+import { AnimatePresence, motion } from "framer-motion";
 
 const stripePromise = loadStripe(`${process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}`);
 const Cart = () => {
@@ -49,41 +50,57 @@ const Cart = () => {
                     )}
                 </div>
 
-                {cartIsVisible && (
-                    <div
-                        className={styles.cartMenu}
-                        onMouseLeave={() => {
-                            setCartIsVisible((c) => !c);
-                        }}
-                    >
-                        {cartProducts
-                            ? cartProducts.map((cartProduct) => (
-                                  <div key={cartProduct.slug} className={styles.cartMenuItem}>
-                                      {cartProduct.name}{" "}
-                                      <div className={styles.cartItemQuantity}>
-                                          {"x"}
-                                          {cartProduct.quantity}
-                                      </div>
-                                      <div
-                                          className={styles.cartRemoveItem}
-                                          onClick={() => {
-                                              removeFromCart(cartProduct);
-                                          }}
-                                      >
-                                          <FiTrash2 />
-                                      </div>
-                                  </div>
-                              ))
-                            : ""}
-                        {cartProducts.length !== 0 ? (
-                            <div className={styles.checkoutButton} onClick={handleCheckoutClick}>
-                                checkout
+                <AnimatePresence initial={false}>
+                    {cartIsVisible && (
+                        <motion.div
+                            transition={{ duration: 0.1 }}
+                            initial={{ opacity: 0, x: 300 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 300 }}
+                            layout
+                        >
+                            <div
+                                className={styles.cartMenu}
+                                onMouseLeave={() => {
+                                    setCartIsVisible(false);
+                                }}
+                            >
+                                {cartProducts
+                                    ? cartProducts.map((cartProduct) => (
+                                          <div
+                                              key={cartProduct.slug}
+                                              className={styles.cartMenuItem}
+                                          >
+                                              {cartProduct.name}{" "}
+                                              <div className={styles.cartItemQuantity}>
+                                                  {"x"}
+                                                  {cartProduct.quantity}
+                                              </div>
+                                              <div
+                                                  className={styles.cartRemoveItem}
+                                                  onClick={() => {
+                                                      removeFromCart(cartProduct);
+                                                  }}
+                                              >
+                                                  <FiTrash2 />
+                                              </div>
+                                          </div>
+                                      ))
+                                    : ""}
+                                {cartProducts.length !== 0 ? (
+                                    <div
+                                        className={styles.checkoutButton}
+                                        onClick={handleCheckoutClick}
+                                    >
+                                        checkout
+                                    </div>
+                                ) : (
+                                    <div>no items in cart :(</div>
+                                )}
                             </div>
-                        ) : (
-                            <div>no items in cart :(</div>
-                        )}
-                    </div>
-                )}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
         </Hydration>
     );

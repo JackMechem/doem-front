@@ -50,9 +50,27 @@
 .imageContainer {
     width: 40%;
     height: auto;
-    margin-bottom: 1px;
     float: left;
     display: flex;
+    object-fit: contain;
+}
+
+.leftArrow {
+    position: absolute;
+    bottom: 10px;
+    right: calc((100% - 40%) + 50px);
+    font-size: 50px;
+    color: #2e652d;
+    cursor: pointer;
+}
+
+.rightArrow {
+    position: absolute;
+    bottom: 10px;
+    right: calc((100% - 40%) + 10px);
+    font-size: 50px;
+    color: #2e652d;
+    cursor: pointer;
 }
 
 .rightContainer {
@@ -64,6 +82,7 @@
     padding-left: 70px;
     padding-right: 70px;
     float: right;
+    overflow: scroll;
 }
 
 .name {
