@@ -3,7 +3,7 @@
     top: 0px;
     height: 55px;
     width: 100vw;
-
+    z-index: 1000000;
     background-color: #f3f2e2;
     border-bottom: 1px solid #677069;
 }

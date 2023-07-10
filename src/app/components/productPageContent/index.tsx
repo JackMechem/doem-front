@@ -18,7 +18,6 @@ const ProductPageContent = ({
     rockButtons: IRockButtons;
 }) => {
     const [currentVariation, setCurrentVariation] = useState(0);
-    const [showImageHandles, setShowImageHandles] = useState(false);
     const [imageIndex, setImageIndex] = useState(0);
 
     const { cartProducts, addToCart, removeFromCart } = useCartStore();
@@ -33,15 +32,7 @@ const ProductPageContent = ({
     return (
         <Hydration>
             <div className={styles.leftContainer}>
-                <div
-                    className={styles.imageContainer}
-                    onMouseEnter={() => {
-                        setShowImageHandles(true);
-                    }}
-                    onMouseLeave={() => {
-                        setShowImageHandles(false);
-                    }}
-                >
+                <div className={styles.imageContainer}>
                     <img
                         src={product.productVariations[currentVariation].images[imageIndex].url}
                         width={product.productVariations[currentVariation].images[imageIndex].width}
@@ -50,34 +41,31 @@ const ProductPageContent = ({
                         }
                         alt="none"
                     ></img>
-                    {showImageHandles && (
-                        <div>
-                            <div
-                                className={styles.leftArrow}
-                                onClick={() => {
-                                    if (imageIndex > 0) {
-                                        setImageIndex((c) => c - 1);
-                                    }
-                                }}
-                            >
-                                <IoIosArrowBack />
-                            </div>
-                            <div
-                                className={styles.rightArrow}
-                                onClick={() => {
-                                    if (
-                                        imageIndex <
-                                        product.productVariations[currentVariation].images.length -
-                                            1
-                                    ) {
-                                        setImageIndex((c) => c + 1);
-                                    }
-                                }}
-                            >
-                                <IoIosArrowForward />
-                            </div>
+                    <div>
+                        <div
+                            className={styles.leftArrow}
+                            onClick={() => {
+                                if (imageIndex > 0) {
+                                    setImageIndex((c) => c - 1);
+                                }
+                            }}
+                        >
+                            <IoIosArrowBack />
                         </div>
-                    )}
+                        <div
+                            className={styles.rightArrow}
+                            onClick={() => {
+                                if (
+                                    imageIndex <
+                                    product.productVariations[currentVariation].images.length - 1
+                                ) {
+                                    setImageIndex((c) => c + 1);
+                                }
+                            }}
+                        >
+                            <IoIosArrowForward />
+                        </div>
+                    </div>
                 </div>
                 <div className={styles.rightContainer}>
                     <div className={styles.name}>{product.name}</div>

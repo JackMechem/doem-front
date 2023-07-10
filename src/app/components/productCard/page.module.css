@@ -67,9 +67,14 @@
     position: absolute;
     display: flex;
     left: 50%;
+    width: auto;
     transform: translate(-50%, 0);
 }
 
-.card .infoContainer .variations div {
+.card .infoContainer .variations .rock img {
+    position: relative;
+    display: block;
+    width: auto;
+    height: 15px;
     padding: 0px 10px;
 }

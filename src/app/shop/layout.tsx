@@ -1,5 +1,6 @@
 import { Jost } from "next/font/google";
 import Header from "../components/header";
+import { PageWrapper } from "../components/pageWrapper";
 
 export const metadata = {
     title: "Doem",

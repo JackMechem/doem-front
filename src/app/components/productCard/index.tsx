@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { IProduct } from "@/types";
+import { IProduct, IRockButtons, RockImage } from "@/types";
 import { NextPage } from "next";
 import Link from "next/link";
 import Image from "next/image";
@@ -11,16 +11,13 @@ import { AnimatePresence, motion } from "framer-motion";
 
 interface Props {
     product: IProduct;
+    rocks: IRockButtons;
 }
 
-const variants = {
-    open: { opacity: 1, x: 0 },
-    closed: { opacity: 0, x: "100%" },
-};
-
-const ProductCard: NextPage<Props> = ({ product }) => {
+const ProductCard: NextPage<Props> = ({ product, rocks }) => {
     const [currentVar, setCurrentVar] = useState(0);
     const [thumbIndex, setThumbIndex] = useState(0);
+    console.log(rocks);
     return (
         <Link key={product.id} href={`/shop/${product.slug}`}>
             <div key={product.id} className={styles.card}>
@@ -45,17 +42,20 @@ const ProductCard: NextPage<Props> = ({ product }) => {
                         }) ?? "Price Not Avalible"}
                     </div>
                     <div className={styles.variations}>
-                        {product.productVariations.map((variation: any, index: number) => (
-                            <div
-                                key={variation.variation}
-                                onMouseEnter={() => {
-                                    setCurrentVar(index);
-                                }}
-                                onMouseLeave={() => {
-                                    setCurrentVar(0);
-                                }}
-                            >
-                                {variation.variation}
+                        {rocks.rockImages.map((rockImage: RockImage, index: number) => (
+                            <div className={styles.rock} key={rockImage.id}>
+                                <img
+                                    src={rockImage.image.url}
+                                    width={10}
+                                    height={10}
+                                    alt={rockImage.variation}
+                                    onMouseEnter={() => {
+                                        setCurrentVar(index);
+                                    }}
+                                    onMouseLeave={() => {
+                                        setCurrentVar(0);
+                                    }}
+                                ></img>
                             </div>
                         ))}
                     </div>

@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import Image from "next/image";
 import ProductPageContent from "@/app/components/productPageContent";
 import { IProduct, IRockButtons } from "@/types";
+import { PageWrapper } from "@/app/components/pageWrapper";
 
 const getProducts = async () => {
     const { products: products }: { products: any } = await graphcms.request(
@@ -101,9 +102,9 @@ const ProductPage = async ({ params }: { params: { slug: string } }) => {
     const rockButtons = await getRockButtons("product-page");
 
     return (
-        <div>
+        <PageWrapper>
             <ProductPageContent product={product} rockButtons={rockButtons} />
-        </div>
+        </PageWrapper>
     );
 };
 
