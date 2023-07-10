@@ -25,7 +25,7 @@
     transition-duration: 50ms;
 }
 
-.leftContainer {
+.mainContainer {
     position: relative;
     width: 100%;
     display: flex;
@@ -138,4 +138,22 @@
     margin-bottom: 60px;
     width: 70%;
     white-space: pre-wrap;
+}
+
+.photoSecector {
+    position: relative;
+    height: auto;
+    width: 60px;
+    padding: 10px;
+    border-left: solid #677069 1px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    overflow-y: scroll;
+}
+
+.photoSecector img {
+    cursor: pointer;
+    border-radius: 10px;
 }

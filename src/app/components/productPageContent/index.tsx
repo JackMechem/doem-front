@@ -31,7 +31,22 @@ const ProductPageContent = ({
 
     return (
         <Hydration>
-            <div className={styles.leftContainer}>
+            <div className={styles.mainContainer}>
+                <div className={styles.photoSecector}>
+                    {product.productVariations[currentVariation].images.map(
+                        (image: any, index: number) => {
+                            return (
+                                <img
+                                    key={image.id}
+                                    src={image.url}
+                                    onClick={() => {
+                                        setImageIndex(index);
+                                    }}
+                                />
+                            );
+                        }
+                    )}
+                </div>
                 <div className={styles.imageContainer}>
                     <img
                         src={product.productVariations[currentVariation].images[imageIndex].url}
