@@ -79,3 +79,20 @@
     color: #ffffff;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 700px) {
+    .cartMenu {
+        position: absolute;
+        background-color: #f3f2e2;
+        left: 10px;
+        right: 10px;
+        width: auto;
+        top: 74px;
+        padding: 10px;
+        z-index: 1000000000;
+        border: 1px solid #677069;
+        border-radius: 20px;
+        max-height: 70vh;
+        overflow-y: scroll;
+    }
+}

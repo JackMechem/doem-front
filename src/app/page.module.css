@@ -42,3 +42,21 @@
     justify-content: center;
     align-items: center;
 }
+
+/*
+ *
+ * Tablet / Mobile
+ *
+ */
+@media only screen and (max-width: 1200px) {
+    .mainContainer {
+        flex-direction: column;
+        overflow: hidden;
+    }
+    .mainContainer img {
+        margin-right: 0px;
+        max-width: 100%;
+        height: auto;
+        max-height: 55%;
+    }
+}

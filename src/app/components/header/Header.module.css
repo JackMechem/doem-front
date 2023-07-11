@@ -46,3 +46,45 @@
     transform: translate(0%, 35%);
     height: 14px;
 }
+
+/*
+ *
+ * Mobile
+ *
+ */
+
+@media only screen and (max-width: 700px) {
+    .header {
+        position: relative;
+        top: 0px;
+        height: 65px;
+        width: 100vw;
+        z-index: 1000000;
+        background-color: #f3f2e2;
+        border-bottom: 1px solid #677069;
+    }
+
+    .logo {
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        width: 65px;
+        padding: 7px 7px 7px 10px;
+    }
+
+    .logo:hover {
+        filter: brightness(160%);
+    }
+
+    .headerLinkContainer {
+        display: none;
+    }
+
+    .headerLink {
+        display: none;
+    }
+
+    .headerLink img {
+        display: none;
+    }
+}

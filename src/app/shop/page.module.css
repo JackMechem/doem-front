@@ -71,3 +71,19 @@
 .card .infoContainer .variations div {
     margin: 0px 10px;
 }
+
+/*
+ *
+ * Tablet / Mobile
+ *
+ */
+@media only screen and (max-width: 1200px) {
+    .container {
+        width: fit-content;
+        margin: auto;
+        border-left: solid #677069 1pt;
+        grid-template-columns: 1fr;
+        border-bottom: solid #677069 1px;
+        gap: 1px;
+    }
+}
