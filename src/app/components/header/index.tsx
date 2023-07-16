@@ -46,7 +46,7 @@ const Header = ({ headerContent }: Props) => {
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -100, opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        style={{ zIndex: 1000 }}
+                        style={{ zIndex: 10000 }}
                     >
                         <MobileMenu
                             logoUrl={headerContent.logo.url}
