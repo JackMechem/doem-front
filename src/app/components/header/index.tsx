@@ -42,8 +42,8 @@ const Header = ({ headerContent }: Props) => {
             <AnimatePresence initial={false}>
                 {hamIsVisible && (
                     <motion.div
-                        initial={{ y: -100, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
+                        initial={{ y: -100, opacity: 0, zIndex: "1000" }}
+                        animate={{ y: 0, opacity: 1, zIndex: "1000" }}
                         exit={{ y: -100, opacity: 0 }}
                         transition={{ duration: 0.2 }}
                         style={{ zIndex: 10000 }}
@@ -54,6 +54,7 @@ const Header = ({ headerContent }: Props) => {
                             aboutLogo={headerContent.aboutLogo.url}
                             shopLogo={headerContent.shopLogo.url}
                             policyLogo={headerContent.policyLogo.url}
+                            closeStateChanger={setHamIsVisible}
                         />
                     </motion.div>
                 )}

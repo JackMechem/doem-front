@@ -44,6 +44,18 @@
 
         filter: saturate(0%) brightness(2000%);
     }
+
+    .hamMenu .close {
+        color: white;
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+        font-size: 35px;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        cursor: pointer;
+    }
 }
 
 @media (min-width: 700px) {
