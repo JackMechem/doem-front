@@ -88,7 +88,7 @@ const Shop = async () => {
         <PageWrapper>
             {productCategories.map((category) => {
                 return (
-                    <div className={styles.container}>
+                    <div key={category.id} className={styles.container}>
                         <video loop autoPlay className={styles.video}>
                             <source src={category.video.url} type="video/mp4" />
                         </video>
