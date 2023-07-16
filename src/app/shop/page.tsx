@@ -3,40 +3,52 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { gql } from "graphql-request";
 import { graphcms } from "@/lib/graphcms/client";
-import { IProduct, IRockButtons } from "@/types";
+import { IProduct, IProductCategory, IRockButtons } from "@/types";
 import { useState } from "react";
 import { NextPage } from "next";
 import ProductCard from "../components/productCard";
 import { PageWrapper } from "../components/pageWrapper";
 
 const getProducts = async () => {
-    const { products: products }: { products: IProduct[] } = await graphcms.request(
-        gql`
-            {
-                products {
-                    id
-                    name
-                    slug
-                    productVariations {
-                        description
+    const { productCategories: productCategories }: { productCategories: IProductCategory[] } =
+        await graphcms.request(
+            gql`
+                {
+                    productCategories {
                         id
                         name
-                        price
                         slug
-                        variation
-                        images {
-                            height
-                            width
+                        video {
                             id
+                            width
+                            height
                             url
+                        }
+                        products {
+                            id
+                            name
+                            slug
+                            productVariations {
+                                description
+                                id
+                                name
+                                price
+                                slug
+                                variation
+                                images {
+                                    height
+                                    width
+                                    id
+                                    url
+                                }
+                            }
                         }
                     }
                 }
-            }
-        `
-    );
+            `
+        );
 
-    return products;
+    return productCategories;
 };
 
 const getRocks = async (slug: string) => {
@@ -69,16 +81,23 @@ const getRocks = async (slug: string) => {
 };
 
 const Shop = async () => {
-    const products = await getProducts();
+    const productCategories = await getProducts();
     const rocks = await getRocks("card");
 
     return (
         <PageWrapper>
-            <div className={styles.container}>
-                {products.map((product) => (
-                    <ProductCard product={product} rocks={rocks} key={product.id} />
-                ))}
-            </div>
+            {productCategories.map((category) => {
+                return (
+                    <div className={styles.container}>
+                        <video loop autoPlay className={styles.video}>
+                            <source src={category.video.url} type="video/mp4" />
+                        </video>
+                        {category.products.map((product) => (
+                            <ProductCard product={product} rocks={rocks} key={product.id} />
+                        ))}
+                    </div>
+                );
+            })}
         </PageWrapper>
     );
 };

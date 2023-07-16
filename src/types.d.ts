@@ -16,6 +16,14 @@ export interface CartProduct {
     };
 }
 
+export interface IProductCategory {
+    id: string;
+    name: string;
+    slug: string;
+    video: IImage;
+    products: IProduct[];
+}
+
 export interface IProduct {
     name?: string;
     id?: string;
