@@ -1,3 +1,10 @@
+export interface IImage {
+    id: string;
+    url: string;
+    width?: number;
+    height?: number;
+}
+
 export interface CartProduct {
     name: string;
     price: number;
@@ -23,14 +30,7 @@ export interface ProductVariation {
     description?: string;
     id?: string;
     variation?: "Cream" | "Green" | "White";
-    images?: [
-        {
-            id?: number;
-            url: string;
-            width?: number;
-            height?: number;
-        }
-    ];
+    images?: IImage[];
 }
 
 export interface IRockButtons {
@@ -56,12 +56,7 @@ export interface IPage {
     slug: string;
     title: string;
     body: IPageBody[];
-    headerLogo: {
-        id: string;
-        width: number;
-        height: number;
-        url: string;
-    };
+    headerLogo: IImage;
 }
 
 export interface IPageBody {
@@ -76,16 +71,15 @@ export interface ILandingPage {
     slug: string;
     companyName: string;
     description: string;
-    candleGif: {
-        id: string;
-        width: number;
-        height: number;
-        url: string;
-    };
-    rockButton: {
-        id: string;
-        width: number;
-        height: number;
-        url: string;
-    };
+    candleGif: IImage;
+    rockButton: IImage;
+}
+
+export interface IHeaderContent {
+    name: string;
+    companyDescription: string;
+    logo: IImage;
+    shopLogo: IImage;
+    policyLogo: IImage;
+    aboutLogo: IImage;
 }

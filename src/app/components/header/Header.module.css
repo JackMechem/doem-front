@@ -87,4 +87,24 @@
     .headerLink img {
         display: none;
     }
+
+    .hamLogo {
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 60px;
+        width: 55px;
+        padding: 13px 10px;
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        cursor: pointer;
+        z-index: 1000000;
+    }
+
+    .hamLine {
+        height: 0px;
+        width: 100%;
+        border-top: 2px solid #000000;
+    }
 }

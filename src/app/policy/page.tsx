@@ -30,7 +30,6 @@ const Page = async () => {
     const page = await getPageData("policy");
     return (
         <div>
-            <Header />
             <PageWrapper>
                 <div className={styles.container}>
                     <div className={styles.title}>{page.title}</div>
