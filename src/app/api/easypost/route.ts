@@ -7,10 +7,12 @@ const resend: Resend = new Resend(`${process.env.RESEND_KEY}`);
 export async function POST(request: Request) {
     const event = await request.json();
 
-    if (event.data.description === "tracker.updated") {
-        console.log(event.data);
-        return NextResponse.json({ message: "success", event: event });
-    } else {
-        return NextResponse.json({ message: "Invalid Event", event: event });
-    }
+    return NextResponse.json({ message: "success", event: event.data });
+
+    // if (event.data.description === "tracker.created") {
+    //     console.log(event.data);
+    //     return NextResponse.json({ message: "success", event: event });
+    // } else {
+    //     return NextResponse.json({ message: "Invalid Event", event: event });
+    // }
 }
