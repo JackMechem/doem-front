@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import EasyPostClient, { IRate, Shipment } from "@easypost/api/";
 import { GraphQLClient } from "graphql-request";
+import { Resend } from "resend";
+import PaymentCompletedEmail from "../../../../emails/paymentCompleted";
 
 const graphcms = new GraphQLClient(`${process.env.GRAPH_CMS_ENDPOINT}`, {
     headers: {
@@ -9,7 +11,8 @@ const graphcms = new GraphQLClient(`${process.env.GRAPH_CMS_ENDPOINT}`, {
     },
 });
 const stripe = new Stripe(`${process.env.STRIPE_SECRET_KEY}`, { apiVersion: "2022-11-15" });
-const client = new EasyPostClient(`${process.env.EASY_POST_KEY}`);
+const client: EasyPostClient = new EasyPostClient(`${process.env.EASY_POST_KEY}`);
+const resend: Resend = new Resend(`${process.env.RESEND_KEY}`);
 
 export async function POST(request: Request) {
     const event = await request.json();
@@ -22,7 +25,7 @@ export async function POST(request: Request) {
     const customer_details = session.customer_details;
     const address = customer_details?.address;
 
-    const shipment = await client.Shipment.create({
+    const shipment: Shipment = await client.Shipment.create({
         to_address: {
             name: customer_details?.name,
             street1: customer_details?.address?.line1,
@@ -50,6 +53,7 @@ export async function POST(request: Request) {
             height: 8,
             weight: 5,
         },
+        insurance: 0,
     });
 
     const rates = await client.Shipment.regenerateRates(shipment.id);
@@ -59,12 +63,6 @@ export async function POST(request: Request) {
     });
 
     console.log("lowest rate: ", lowestRate);
-
-    const boughtShipment = await client.Shipment.buy(shipment.id, lowestRate);
-
-    console.log("bought shipment", boughtShipment);
-
-    const trackingNumber = boughtShipment.tracking_code;
 
     await graphcms.request(
         `
@@ -84,7 +82,7 @@ export async function POST(request: Request) {
                 email: customer_details?.email,
                 total: session.amount_total,
                 stripeCheckoutId: session.id,
-                trackingNumber,
+                trackingNumber: shipment.id,
                 shipped: false,
                 address: {
                     create: {
@@ -113,5 +111,16 @@ export async function POST(request: Request) {
         }
     );
 
-    return NextResponse.json({ message: "Success", shipment: boughtShipment });
+    resend.sendEmail({
+        from: "onboarding@resend.dev",
+        to: customer_details!.email!.toString(),
+        subject: "Order Completed",
+        react: PaymentCompletedEmail({
+            trackingUrl: "null",
+            trackingCode: "null",
+            total: session.amount_total!,
+        }),
+    });
+
+    return NextResponse.json({ message: "Success", shipment: shipment });
 }
