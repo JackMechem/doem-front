@@ -9,8 +9,8 @@ export async function POST(request: Request) {
 
     console.log(event);
 
-    if (event.data.description === "tracker.created") {
-        console.log(event.data);
+    if (event.data.object.description === "tracker.created") {
+        console.log(event.data.object);
         return NextResponse.json({ message: "success 1", body: { message: "message" } });
     } else {
         console.log(event);
