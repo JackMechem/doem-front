@@ -64,6 +64,10 @@ export async function POST(request: Request) {
 
     console.log("lowest rate: ", lowestRate);
 
+    const batch = client.Batch.create({
+        shipments: [{ id: shipment.id }],
+    });
+
     await graphcms.request(
         `
             mutation CreateOrderMutation($data: OrderCreateInput!) {
@@ -122,5 +126,5 @@ export async function POST(request: Request) {
         }),
     });
 
-    return NextResponse.json({ message: "Success", shipment: shipment });
+    return NextResponse.json({ message: "Success", shipment: batch });
 }
