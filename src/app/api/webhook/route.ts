@@ -64,7 +64,7 @@ export async function POST(request: Request) {
 
     console.log("lowest rate: ", lowestRate);
 
-    const batch = client.Batch.create({
+    const batch = await client.Batch.create({
         shipments: [{ id: shipment.id }],
     });
 
