@@ -9,7 +9,7 @@ export async function POST(request: Request) {
 
     if (event.data.description === "tracker.updated") {
         console.log(event.data);
-        NextResponse.json({ message: "success", event: event });
+        return NextResponse.json({ message: "success", event: event });
     } else {
         return NextResponse.json({ message: "Invalid Event", event: event });
     }
