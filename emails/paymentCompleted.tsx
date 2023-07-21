@@ -34,17 +34,23 @@ export const PaymentCompletedEmail = ({
         {
             name: "candle 1",
             quantity: "2",
-            price: 4000,
+            productVariation: {
+                price: 40000,
+            },
         },
         {
             name: "dfh gjf ghjfcandle 2",
             quantity: "2",
-            price: 4000,
+            productVariation: {
+                price: 40000,
+            },
         },
         {
             name: "hghdhd candle 3",
             quantity: "2",
-            price: 4000,
+            productVariation: {
+                price: 40000,
+            },
         },
     ],
     total,
@@ -81,7 +87,7 @@ export const PaymentCompletedEmail = ({
                         return (
                             <Text style={{ ...text, margin: "10px 0px", letterSpacing: "0.3px" }}>
                                 {item.name} | x{item.quantity} |{" "}
-                                {(item.total_price / 100).toLocaleString("en-US", {
+                                {(item.productVariation.price / 100).toLocaleString("en-US", {
                                     style: "currency",
                                     currency: "USD",
                                 })}
