@@ -8,6 +8,7 @@ import {
     Link,
     Preview,
     Text,
+    Font,
 } from "@react-email/components";
 import * as React from "react";
 import { currency } from "swell-js";
@@ -21,7 +22,7 @@ interface IOrderLineItem {
     weight_unit: "lb";
 }
 
-interface NotionMagicLinkEmailProps {
+interface Props {
     order: any;
     total: number;
 }
@@ -47,9 +48,20 @@ export const PaymentCompletedEmail = ({
         },
     ],
     total,
-}: NotionMagicLinkEmailProps) => (
+}: Props) => (
     <Html>
-        <Head />
+        <Head>
+            <Font
+                fontFamily="JetBrains Mono"
+                fallbackFontFamily="Arial"
+                webFont={{
+                    url: "https://fonts.gstatic.com/s/jetbrainsmono/v18/tDbY2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKxTOlOV.woff2",
+                    format: "woff2",
+                }}
+                fontWeight={400}
+                fontStyle="normal"
+            />
+        </Head>
         <Preview>Order Completed</Preview>
         <Body style={main}>
             <Container style={container}>
@@ -69,7 +81,7 @@ export const PaymentCompletedEmail = ({
                         return (
                             <Text style={{ ...text, margin: "10px 0px", letterSpacing: "0.3px" }}>
                                 {item.name} | x{item.quantity} |{" "}
-                                {(item.price / 100).toLocaleString("en-US", {
+                                {(item.total_price / 100).toLocaleString("en-US", {
                                     style: "currency",
                                     currency: "USD",
                                 })}
@@ -121,8 +133,7 @@ const container = {
 
 const h1 = {
     color: "#333",
-    fontFamily:
-        "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+    fontFamily: "JetBrains Mono, monospace",
     fontSize: "24px",
     fontWeight: "bold",
     margin: "40px 0",
@@ -131,24 +142,21 @@ const h1 = {
 
 const link = {
     color: "#2754C5",
-    fontFamily:
-        "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+    fontFamily: "JetBrains Mono, monospace",
     fontSize: "14px",
     textDecoration: "underline",
 };
 
 const text = {
     color: "#333",
-    fontFamily:
-        "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+    fontFamily: "JetBrains Mono, monospace",
     fontSize: "14px",
     margin: "24px 0",
 };
 
 const footer = {
     color: "#898989",
-    fontFamily:
-        "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+    fontFamily: "JetBrains Mono, monospace",
     fontSize: "12px",
     lineHeight: "22px",
     marginTop: "12px",
