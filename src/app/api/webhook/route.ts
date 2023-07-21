@@ -1,18 +1,33 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-import EasyPostClient, { IRate, Shipment } from "@easypost/api/";
+import EasyPostClient, { IOrder, IRate, Shipment } from "@easypost/api/";
 import { GraphQLClient } from "graphql-request";
 import { Resend } from "resend";
 import PaymentCompletedEmail from "../../../../emails/paymentCompleted";
+import Shippo, { Parcel } from "shippo";
+import { LineItem } from "@stripe/stripe-js";
+import { currency } from "swell-js";
 
 const graphcms = new GraphQLClient(`${process.env.GRAPH_CMS_ENDPOINT}`, {
     headers: {
         Authorization: `${process.env.STRIPE_MUTATION_AUTH}`,
     },
 });
+
+interface IOrderLineItem {
+    currency: string;
+    total: string;
+    total_price: number;
+    quantity: number;
+    weight: number;
+    weight_unit: "lb";
+}
+
 const stripe = new Stripe(`${process.env.STRIPE_SECRET_KEY}`, { apiVersion: "2022-11-15" });
-const client: EasyPostClient = new EasyPostClient(`${process.env.EASY_POST_KEY}`);
+// const client: EasyPostClient = new EasyPostClient(`${process.env.EASY_POST_KEY}`);
 const resend: Resend = new Resend(`${process.env.RESEND_KEY}`);
+
+let shippo = require("shippo")(`${process.env.SHIPPO_TOKEN}`);
 
 export async function POST(request: Request) {
     const event = await request.json();
@@ -25,50 +40,7 @@ export async function POST(request: Request) {
     const customer_details = session.customer_details;
     const address = customer_details?.address;
 
-    const shipment: Shipment = await client.Shipment.create({
-        to_address: {
-            name: customer_details?.name,
-            street1: customer_details?.address?.line1,
-            street2: customer_details?.address?.line2,
-            city: customer_details?.address?.city,
-            state: customer_details?.address?.state,
-            zip: customer_details?.address?.postal_code,
-            country: customer_details?.address?.country,
-            email: customer_details?.email,
-            phone: customer_details?.phone,
-        },
-        from_address: {
-            street1: "417 montgomery street",
-            street2: "FL 5",
-            city: "San Francisco",
-            state: "CA",
-            zip: "94104",
-            country: "US",
-            company: "EasyPost",
-            phone: "415-123-4567",
-        },
-        parcel: {
-            length: 8,
-            width: 8,
-            height: 8,
-            weight: 5,
-        },
-        insurance: 0,
-    });
-
-    const rates = await client.Shipment.regenerateRates(shipment.id);
-
-    const lowestRate = rates.rates.reduce((prev, curr) => {
-        return Number(prev.rate) < Number(curr.rate) ? prev : curr;
-    });
-
-    console.log("lowest rate: ", lowestRate);
-
-    const batch = await client.Batch.create({
-        shipments: [{ id: shipment.id }],
-    });
-
-    await graphcms.request(
+    const orderMutation: any = await graphcms.request(
         `
             mutation CreateOrderMutation($data: OrderCreateInput!) {
                 createOrder(data: $data) {
@@ -77,6 +49,12 @@ export async function POST(request: Request) {
                         name
                         slug
                         quantity
+                        productVariation {
+                            name
+                            price
+                            variation
+                            weight
+                        }
                     }
                 }
             }
@@ -86,7 +64,7 @@ export async function POST(request: Request) {
                 email: customer_details?.email,
                 total: session.amount_total,
                 stripeCheckoutId: session.id,
-                trackingNumber: shipment.id,
+                trackingNumber: "1101",
                 shipped: false,
                 address: {
                     create: {
@@ -114,6 +92,99 @@ export async function POST(request: Request) {
             },
         }
     );
+    // {{{ hygraph order request (redundent)
+    // const cmsOrder = await graphcms.request(
+    //     `
+    //     query OrderQuery($stripeCheckoutId: String!) {
+    //         order(where: {stripeCheckoutId: $stripeCheckoutId}) {
+    //             id
+    //             stripeCheckoutId
+    //             total
+    //             email
+    //             address {
+    //                 id
+    //                 city
+    //                 country
+    //                 line1
+    //                 line2
+    //                 postalCode
+    //             }
+    //             orderItems {
+    //                 name
+    //                 id
+    //                 slug
+    //                 quantity
+    //                 productVariation {
+    //                     name
+    //                     price
+    //                     weight
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     `,
+    //     {
+    //         stripeCheckoutId: session.id,
+    //     }
+    // );
+    // }}}
+
+    console.log(orderMutation);
+
+    const addressFrom: Shippo.Address = await shippo.address.create({
+        name: "Jack Mechem",
+        company: "doem",
+        street1: "10651 Robin Hill Ave",
+        city: "Las Vegas",
+        state: "Nevada",
+        zip: "89129",
+        country: "US",
+        phone: "+1 702 201 4608",
+        email: "mechemjack@gmail.com",
+    });
+
+    const addressTo: Shippo.Address = await shippo.address.create({
+        name: customer_details?.name,
+        street1: customer_details?.address?.line1,
+        street2: customer_details?.address?.line2,
+        city: customer_details?.address?.city,
+        state: customer_details?.address?.state,
+        zip: customer_details?.address?.postal_code,
+        country: customer_details?.address?.country,
+        email: customer_details?.email,
+    });
+
+    const date = new Date();
+
+    const orderLineItems = orderMutation.createOrder.orderItems.map((item: any) => {
+        return {
+            currency: "USD",
+            title: item.productVariation.name,
+            total_price: item.productVariation.price / 100,
+            quantity: item.quantity,
+            weight: item.productVariation.weight,
+            weight_unit: "lb",
+        };
+    });
+
+    let packageWeight: number = orderLineItems.reduce(
+        (partialSum: any, a: IOrderLineItem) => partialSum + a.weight * a.quantity,
+        0
+    );
+
+    console.log("packageWeight:: ", packageWeight);
+
+    const order = await shippo.order.create({
+        order_number: session.id,
+        to_address: addressTo,
+        from_address: addressFrom,
+        placed_at: date,
+        line_items: orderLineItems,
+        weight: packageWeight,
+        weight_unit: "lb",
+    });
+
+    console.log(order);
 
     resend.sendEmail({
         from: "onboarding@resend.dev",
@@ -126,5 +197,5 @@ export async function POST(request: Request) {
         }),
     });
 
-    return NextResponse.json({ message: "Success", shipment: batch });
+    return NextResponse.json({ message: "Success", shipment: order });
 }

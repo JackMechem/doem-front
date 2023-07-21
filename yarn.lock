@@ -2254,6 +2254,11 @@
   resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.16.3.tgz#cef09e3ec9af1d63d2a6cc5b383a737e24e6dcf5"
   integrity sha512-5cJ8CB4yAx7BH1oMvdU0Jh9lrEXyPkar6F9G/ERswkCuvP4KQZfZkSjcMbAICCpQTN4OuZn8tz0HiKv9TGZgrQ==
 
+"@types/shippo@^1.7.2":
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/@types/shippo/-/shippo-1.7.2.tgz#68f191da0e0790358d67d8f965fb3157624baa87"
+  integrity sha512-LTvZlU1ZM3R6NLGUs3naXlcLNC6SMH779HQLVMXw/sb0+hxgruvPmb+7PrXca7s9mKE41jxR4mdU8TdSXM/cIA==
+
 "@types/swell-js@^3.19.3":
   version "3.19.3"
   resolved "https://registry.yarnpkg.com/@types/swell-js/-/swell-js-3.19.3.tgz#14fa849a71079bf6c74020ef357ec1d72380b2e1"
@@ -6976,6 +6981,11 @@ shelljs@0.8.5:
     glob "^7.0.0"
     interpret "^1.0.0"
     rechoir "^0.6.2"
+
+shippo@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/shippo/-/shippo-1.7.1.tgz#4f383ec7f4575de8a28d2a5e0e039fdaae3028ba"
+  integrity sha512-kALIuHGjGhSAq2Yvz9sLewxgJkC82/bsUqjAXOT9jfW0T1LPxRouwFkBUBsgYe68qlbyrMjfpIbtg5Mx7t4SMw==
 
 side-channel@^1.0.4:
   version "1.0.4"

@@ -38,6 +38,7 @@ export interface ProductVariation {
     description?: string;
     id?: string;
     variation?: "Cream" | "Green" | "White";
+    weight: number;
     images?: IImage[];
 }
 
