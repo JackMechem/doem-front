@@ -92,43 +92,6 @@ export async function POST(request: Request) {
             },
         }
     );
-    // {{{ hygraph order request (redundent)
-    // const cmsOrder = await graphcms.request(
-    //     `
-    //     query OrderQuery($stripeCheckoutId: String!) {
-    //         order(where: {stripeCheckoutId: $stripeCheckoutId}) {
-    //             id
-    //             stripeCheckoutId
-    //             total
-    //             email
-    //             address {
-    //                 id
-    //                 city
-    //                 country
-    //                 line1
-    //                 line2
-    //                 postalCode
-    //             }
-    //             orderItems {
-    //                 name
-    //                 id
-    //                 slug
-    //                 quantity
-    //                 productVariation {
-    //                     name
-    //                     price
-    //                     weight
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     `,
-    //     {
-    //         stripeCheckoutId: session.id,
-    //     }
-    // );
-    // }}}
-
     console.log(orderMutation);
 
     const addressFrom: Shippo.Address = await shippo.address.create({
@@ -186,7 +149,7 @@ export async function POST(request: Request) {
 
     console.log(order);
 
-    resend.sendEmail({
+    const email = await resend.sendEmail({
         from: "onboarding@resend.dev",
         to: customer_details!.email!.toString(),
         subject: "Order Completed",
@@ -196,6 +159,8 @@ export async function POST(request: Request) {
             total: session.amount_total!,
         }),
     });
+
+    console.log(email);
 
     return NextResponse.json({ message: "Success", shipment: order });
 }
