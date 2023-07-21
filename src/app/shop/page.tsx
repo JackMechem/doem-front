@@ -89,7 +89,7 @@ const Shop = async () => {
             {productCategories.map((category) => {
                 return (
                     <div key={category.id} className={styles.container}>
-                        <video loop autoPlay className={styles.video}>
+                        <video loop autoPlay playsInline controls className={styles.video}>
                             <source src={category.video.url} type="video/mp4" />
                         </video>
                         {category.products.map((product) => (
