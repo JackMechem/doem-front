@@ -10,6 +10,7 @@ import {
     Text,
 } from "@react-email/components";
 import * as React from "react";
+import { currency } from "swell-js";
 
 interface IOrderLineItem {
     currency: string;
@@ -35,12 +36,12 @@ export const PaymentCompletedEmail = ({
             price: 4000,
         },
         {
-            name: "candle 2",
+            name: "dfh gjf ghjfcandle 2",
             quantity: "2",
             price: 4000,
         },
         {
-            name: "candle 3",
+            name: "hghdhd candle 3",
             quantity: "2",
             price: 4000,
         },
@@ -66,8 +67,12 @@ export const PaymentCompletedEmail = ({
                 <code style={code}>
                     {order.map((item: any) => {
                         return (
-                            <Text style={text}>
-                                {item.name} x{item.quantity} {"    "} {item.price}
+                            <Text style={{ ...text, margin: "10px 0px", letterSpacing: "0.3px" }}>
+                                {item.name} | x{item.quantity} |{" "}
+                                {(item.price / 100).toLocaleString("en-US", {
+                                    style: "currency",
+                                    currency: "USD",
+                                })}
                             </Text>
                         );
                     })}
