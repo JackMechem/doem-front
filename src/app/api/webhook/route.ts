@@ -145,7 +145,7 @@ export async function POST(request: Request) {
     });
 
     const email = await resend.sendEmail({
-        from: "onboarding@resend.dev",
+        from: "doem@doemshop.com",
         to: customer_details!.email!.toString(),
         subject: "Order Placed",
         react: PaymentCompletedEmail({
