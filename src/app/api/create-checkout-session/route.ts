@@ -75,8 +75,8 @@ export async function POST(request: Request) {
             await itemsCreation();
         } catch {}
         const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = await line_items_temp();
-        const success_url: string = `https://${process.env.VERCEL_URL}/?id={CHECKOUT_SESSION_ID}`;
-        const cancel_url: string = `https://${process.env.VERCEL_URL}/shop`;
+        const success_url: string = `https://${process.env.SITE_URL}/?id={CHECKOUT_SESSION_ID}`;
+        const cancel_url: string = `https://${process.env.SITE_URL}/shop`;
         const session: Stripe.Response<Stripe.Checkout.Session> =
             await stripe.checkout.sessions.create({
                 success_url,

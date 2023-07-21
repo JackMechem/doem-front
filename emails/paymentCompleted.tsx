@@ -28,7 +28,7 @@ interface Props {
     sessionId: string;
 }
 
-const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "";
+const baseUrl = process.env.VERCEL_URL ? `https://${process.env.SITE_URL}` : "";
 
 export const PaymentCompletedEmail = ({
     order = [
@@ -105,7 +105,8 @@ export const PaymentCompletedEmail = ({
                         marginBottom: "16px",
                     }}
                 >
-                    Thank you for your purchase!
+                    Thank you for your purchase! You will recieve emails ragarding the status of
+                    your shipment.
                 </Text>
                 <Text style={text}>Your checkout session id:</Text>
                 <code style={code}>{sessionId}</code>

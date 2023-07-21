@@ -92,7 +92,6 @@ export async function POST(request: Request) {
             },
         }
     );
-    console.log(orderMutation);
 
     const addressFrom: Shippo.Address = await shippo.address.create({
         name: "Jack Mechem",
@@ -135,8 +134,6 @@ export async function POST(request: Request) {
         0
     );
 
-    console.log("packageWeight:: ", packageWeight);
-
     const order = await shippo.order.create({
         order_number: session.id,
         to_address: addressTo,
@@ -147,12 +144,10 @@ export async function POST(request: Request) {
         weight_unit: "lb",
     });
 
-    console.log(order);
-
     const email = await resend.sendEmail({
         from: "onboarding@resend.dev",
         to: customer_details!.email!.toString(),
-        subject: "Order Completed",
+        subject: "Order Placed",
         react: PaymentCompletedEmail({
             total: session.amount_total!,
             order: orderMutation.createOrder.orderItems,
