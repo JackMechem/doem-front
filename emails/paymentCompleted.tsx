@@ -25,6 +25,7 @@ interface IOrderLineItem {
 interface Props {
     order: any;
     total: number;
+    sessionId: string;
 }
 
 const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "";
@@ -54,6 +55,7 @@ export const PaymentCompletedEmail = ({
         },
     ],
     total,
+    sessionId,
 }: Props) => (
     <Html>
         <Head>
@@ -104,7 +106,10 @@ export const PaymentCompletedEmail = ({
                     }}
                 >
                     Thank you for your purchase!
+                    <br />
+                    Your checkout session id:
                 </Text>
+                <code style={code}>{sessionId}</code>
                 <Text style={footer}>
                     <Link
                         href="https://notion.so"

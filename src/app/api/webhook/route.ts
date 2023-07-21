@@ -156,6 +156,7 @@ export async function POST(request: Request) {
         react: PaymentCompletedEmail({
             total: session.amount_total!,
             order: orderMutation.createOrder.orderItems,
+            sessionId: session.id,
         }),
     });
 
