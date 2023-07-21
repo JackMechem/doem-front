@@ -154,9 +154,8 @@ export async function POST(request: Request) {
         to: customer_details!.email!.toString(),
         subject: "Order Completed",
         react: PaymentCompletedEmail({
-            trackingUrl: "null",
-            trackingCode: "null",
             total: session.amount_total!,
+            order: orderMutation.createOrder.orderItems,
         }),
     });
 

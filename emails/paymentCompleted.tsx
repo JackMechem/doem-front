@@ -11,17 +11,40 @@ import {
 } from "@react-email/components";
 import * as React from "react";
 
+interface IOrderLineItem {
+    currency: string;
+    total: string;
+    total_price: number;
+    quantity: number;
+    weight: number;
+    weight_unit: "lb";
+}
+
 interface NotionMagicLinkEmailProps {
-    trackingCode: string;
-    trackingUrl: string;
+    order: any;
     total: number;
 }
 
 const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "";
 
 export const PaymentCompletedEmail = ({
-    trackingUrl,
-    trackingCode,
+    order = [
+        {
+            name: "candle 1",
+            quantity: "2",
+            price: 4000,
+        },
+        {
+            name: "candle 2",
+            quantity: "2",
+            price: 4000,
+        },
+        {
+            name: "candle 3",
+            quantity: "2",
+            price: 4000,
+        },
+    ],
     total,
 }: NotionMagicLinkEmailProps) => (
     <Html>
@@ -29,24 +52,26 @@ export const PaymentCompletedEmail = ({
         <Preview>Order Completed</Preview>
         <Body style={main}>
             <Container style={container}>
-                <Heading style={h1}>doem</Heading>
-                <Link
-                    href={trackingUrl}
-                    target="_blank"
-                    style={{
-                        ...link,
-                        display: "block",
-                        marginBottom: "16px",
-                    }}
-                >
-                    Click here to track your package
-                </Link>
+                <Heading style={h1}>
+                    <Link href={baseUrl} target="_blank" style={h1}>
+                        doem.
+                    </Link>
+                </Heading>
                 <Text style={{ ...text, marginBottom: "14px" }}>
                     Your Total:{" "}
                     {(total / 100).toLocaleString("en-us", { style: "currency", currency: "USD" })}
                 </Text>
-                <Text style={{ ...text, marginBottom: "14px" }}>Or, use your tracking number:</Text>
-                <code style={code}>{trackingCode}</code>
+                <Text style={{ ...text, marginBottom: "14px" }}>Your Order Items:</Text>
+
+                <code style={code}>
+                    {order.map((item: any) => {
+                        return (
+                            <Text style={text}>
+                                {item.name} x{item.quantity} {"    "} {item.price}
+                            </Text>
+                        );
+                    })}
+                </code>
                 <Text
                     style={{
                         ...text,
