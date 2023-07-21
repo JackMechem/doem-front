@@ -55,7 +55,7 @@ export const PaymentCompletedEmail = ({
         },
     ],
     total,
-    sessionId,
+    sessionId = "null",
 }: Props) => (
     <Html>
         <Head>
@@ -106,16 +106,11 @@ export const PaymentCompletedEmail = ({
                     }}
                 >
                     Thank you for your purchase!
-                    <br />
-                    Your checkout session id:
                 </Text>
+                <Text style={text}>Your checkout session id:</Text>
                 <code style={code}>{sessionId}</code>
                 <Text style={footer}>
-                    <Link
-                        href="https://notion.so"
-                        target="_blank"
-                        style={{ ...link, color: "#898989" }}
-                    >
+                    <Link href={baseUrl} target="_blank" style={{ ...link, color: "#898989" }}>
                         doem.com
                     </Link>
                     <br />
@@ -182,4 +177,5 @@ const code = {
     borderRadius: "5px",
     border: "1px solid #eee",
     color: "#333",
+    fontFamily: "JetBrains Mono, monospace",
 };
