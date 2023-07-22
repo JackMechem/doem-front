@@ -167,6 +167,12 @@
     flex-direction: column;
     justify-content: space-evenly;
     overflow-y: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.photoSecector::-webkit-scrollbar {
+    display: none;
 }
 
 .photoSecector img {
@@ -179,7 +185,7 @@
  * Tablet
  *
  */
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1200px) {
     .mainContainer {
         position: relative;
         width: 100%;
