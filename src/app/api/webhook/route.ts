@@ -146,8 +146,13 @@ export async function POST(request: Request) {
 
     const email = await resend.sendEmail({
         from: "doem@doemshop.com",
-        to: customer_details!.email!.toString(),
-        subject: "Order Placed",
+        to: [
+            customer_details!.email!.toString(),
+            "zanem37@gmail.com",
+            "phuongdoo97@gmail.com",
+            "officialdoem@gmail.com",
+        ],
+        subject: "Order Placed!",
         react: PaymentCompletedEmail({
             total: session.amount_total!,
             order: orderMutation.createOrder.orderItems,

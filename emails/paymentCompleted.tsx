@@ -75,7 +75,7 @@ export const PaymentCompletedEmail = ({
             <Container style={container}>
                 <Heading style={h1}>
                     <Link href={baseUrl} target="_blank" style={h1}>
-                        doem.
+                        Doem
                     </Link>
                 </Heading>
                 <Text style={{ ...text, marginBottom: "14px" }}>
@@ -108,7 +108,7 @@ export const PaymentCompletedEmail = ({
                     Thank you for your purchase! You will recieve emails ragarding the status of
                     your shipment.
                 </Text>
-                <Text style={text}>Your checkout session id:</Text>
+                <Text style={text}>Your order number:</Text>
                 <code style={code}>{sessionId}</code>
                 <Text style={footer}>
                     <Link href={baseUrl} target="_blank" style={{ ...link, color: "#898989" }}>
