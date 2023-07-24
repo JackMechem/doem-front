@@ -9,6 +9,7 @@
     font-size: 14pt;
     text-align: center;
     cursor: pointer;
+    box-shadow: 0 4px 10px -2px #000000;
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
@@ -16,12 +17,10 @@
 
 .addToCartButton:hover {
     background-color: #0a140a;
-    border-radius: 18px;
-    transition-duration: 200ms;
+    box-shadow: 0 4px 7px -2px #000000;
 }
 
 .addToCartButton:active {
     background-color: #112110;
-    border-radius: 20px;
     transition-duration: 50ms;
 }

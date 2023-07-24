@@ -25,7 +25,7 @@ const ProductCard: NextPage<Props> = ({ product, rocks }) => {
                     src={product.productVariations[currentVar].images![thumbIndex].url}
                     width={product.productVariations[currentVar].images![thumbIndex].width}
                     height={product.productVariations[currentVar].images![thumbIndex].height}
-                    alt=""
+                    alt={product.productVariations[currentVar].slug}
                     onMouseEnter={() => {
                         setThumbIndex(1);
                     }}
@@ -35,20 +35,15 @@ const ProductCard: NextPage<Props> = ({ product, rocks }) => {
                 />
                 <div className={styles.infoContainer}>
                     <div className={styles.name}>{product.name}</div>
-                    <div className={styles.price}>
-                        {(product.productVariations[0].price / 100).toLocaleString("en-US", {
-                            style: "currency",
-                            currency: "USD",
-                        }) ?? "Price Not Avalible"}
-                    </div>
                     <div className={styles.variations}>
                         {rocks.rockImages.map((rockImage: RockImage, index: number) => (
                             <div className={styles.rock} key={rockImage.id}>
                                 <img
                                     src={rockImage.image.url}
-                                    width={10}
-                                    height={10}
                                     alt={rockImage.variation}
+                                    width={rockImage.image.width}
+                                    height={rockImage.image.height}
+                                    key={rockImage.name}
                                     onMouseEnter={() => {
                                         setCurrentVar(index);
                                     }}
@@ -58,6 +53,12 @@ const ProductCard: NextPage<Props> = ({ product, rocks }) => {
                                 ></img>
                             </div>
                         ))}
+                    </div>
+                    <div className={styles.price}>
+                        {(product.productVariations[0].price / 100).toLocaleString("en-US", {
+                            style: "currency",
+                            currency: "USD",
+                        }) ?? "Price Not Avalible"}
                     </div>
                 </div>
             </div>

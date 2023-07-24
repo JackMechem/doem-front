@@ -39,16 +39,22 @@ const AddToCartButton = ({
             <AnimatePresence initial={false} mode="sync">
                 {showNotification && (
                     <motion.div
-                        initial={{ opacity: 0, y: -100 }}
+                        initial={{ opacity: 0, y: -80 }}
                         animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -100 }}
-                        transition={{ duration: 0.2, type: "spring", stiffness: 100 }}
-                        style={{ position: "fixed", top: "0px", right: "0px", width: "600px" }}
+                        exit={{ opacity: 0, y: -80 }}
+                        transition={{ duration: 0.5, type: "spring" }}
+                        style={{
+                            position: "fixed",
+                            top: "0px",
+                            right: "0px",
+                            width: "100%",
+                            zIndex: "10000000000",
+                        }}
                         onAnimationComplete={() => {
                             setShowNotification(!showNotification);
                         }}
                     >
-                        <Notification key={timesPressed}>added to cart</Notification>
+                        <Notification key={timesPressed}>Added to Cart</Notification>
                     </motion.div>
                 )}
             </AnimatePresence>

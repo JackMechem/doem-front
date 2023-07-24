@@ -1,9 +1,21 @@
 .notification {
     position: fixed;
-    right: 10px;
-    top: 65px;
-    padding: 10px 30px;
-    background-color: #8ab888;
-    border: solid #2e652d 1px;
-    border-radius: 15px;
+    left: calc(50%);
+    transform: translate(-50%, 0%);
+    top: 10px;
+    width: auto;
+    padding: 15px 90px;
+    background-color: #eaffca;
+    border: solid #93ef5a 1px;
+    border-radius: 5px;
+    color: #41612d;
+    z-index: 100000000;
+    box-shadow: 0 4px 10px -2px #93ef5a;
+}
+
+@media (max-width: 700px) {
+    .notification {
+        padding: 15px 30px;
+        text-align: center;
+    }
 }

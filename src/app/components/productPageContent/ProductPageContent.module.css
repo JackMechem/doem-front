@@ -165,7 +165,7 @@
     margin-left: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     overflow-y: scroll;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
@@ -177,7 +177,9 @@
 
 .photoSecector img {
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 /*
@@ -326,7 +328,6 @@
         position: relative;
         height: 65px;
         width: 70%;
-        padding: 10px;
         padding-bottom: 0px;
         border-left: solid #677069 1px;
         border-right: solid #677069 1px;
@@ -334,13 +335,16 @@
         margin-right: auto;
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
+        justify-content: space-between;
         overflow-x: scroll;
     }
 
     .photoSecector img {
         cursor: pointer;
         border-radius: 10px;
+        margin: 0px;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 }
 
@@ -495,12 +499,15 @@
         margin-right: auto;
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
+        justify-content: space-between;
         overflow-x: scroll;
     }
 
     .photoSecector img {
         cursor: pointer;
         border-radius: 10px;
+        margin: 0px;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 }
