@@ -93,6 +93,7 @@
         height: 80vw;
         margin: 0px;
         object-fit: cover;
+        /* border-radius: 10px; */
     }
 
     .card .infoContainer {

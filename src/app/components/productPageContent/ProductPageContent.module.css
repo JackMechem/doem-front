@@ -389,7 +389,7 @@
 
     .leftArrow {
         position: absolute;
-        top: calc(20px + 65px);
+        top: calc(20px + 55px);
         right: 70px;
         height: 40px;
         width: 40px;
@@ -406,7 +406,7 @@
 
     .rightArrow {
         position: absolute;
-        top: calc(20px + 65px);
+        top: calc(20px + 55px);
         right: 20px;
         height: 40px;
         width: 40px;
