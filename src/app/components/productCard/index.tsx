@@ -8,6 +8,7 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./page.module.css";
 import { AnimatePresence, motion } from "framer-motion";
+import { abort } from "process";
 
 interface Props {
     product: IProduct;
@@ -17,15 +18,16 @@ interface Props {
 const ProductCard: NextPage<Props> = ({ product, rocks }) => {
     const [currentVar, setCurrentVar] = useState(0);
     const [thumbIndex, setThumbIndex] = useState(0);
-    console.log(rocks);
     return (
         <Link key={product.id} href={`/shop/${product.slug}`}>
             <div key={product.id} className={styles.card}>
                 <img
+                    key={thumbIndex + currentVar}
                     src={product.productVariations[currentVar].images![thumbIndex].url}
                     width={product.productVariations[currentVar].images![thumbIndex].width}
                     height={product.productVariations[currentVar].images![thumbIndex].height}
                     alt={product.productVariations[currentVar].slug}
+                    loading="eager"
                     onMouseEnter={() => {
                         setThumbIndex(1);
                     }}

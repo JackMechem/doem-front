@@ -39,9 +39,12 @@ const ProductPageContent = ({
                                 <img
                                     key={image.id}
                                     src={image.url}
+                                    alt={index.toString()}
                                     onClick={() => {
                                         setImageIndex(index);
                                     }}
+                                    loading="eager"
+                                    decoding="async"
                                     style={
                                         index === imageIndex
                                             ? {
