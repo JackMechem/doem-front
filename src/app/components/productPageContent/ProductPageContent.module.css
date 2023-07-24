@@ -375,6 +375,7 @@
         margin-left: auto;
         object-fit: cover;
         border: none;
+        border-radius: 20px;
     }
 
     .imageContainer {
