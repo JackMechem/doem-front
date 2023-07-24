@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 import { gql } from "graphql-request";
 import { graphcms } from "@/lib/graphcms/client";
 import { IProduct, IProductCategory, IRockButtons } from "@/types";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { NextPage } from "next";
 import ProductCard from "../components/productCard";
 import { PageWrapper } from "../components/pageWrapper";
@@ -89,9 +89,11 @@ const Shop = async () => {
             {productCategories.map((category) => {
                 return (
                     <div key={category.id} className={styles.container}>
-                        <video loop autoPlay playsInline controls className={styles.video}>
-                            <source src={category.video.url} type="video/mp4" />
-                        </video>
+                        <Suspense fallback={<Loading />}>
+                            <video loop autoPlay playsInline controls className={styles.video}>
+                                <source src={category.video.url} type="video/mp4" />
+                            </video>
+                        </Suspense>
                         {category.products.map((product) => (
                             <ProductCard product={product} rocks={rocks} key={product.id} />
                         ))}
@@ -103,3 +105,7 @@ const Shop = async () => {
 };
 
 export default Shop;
+
+const Loading = () => {
+    return <h2>Loading...</h2>;
+};
