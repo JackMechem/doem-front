@@ -371,6 +371,7 @@
         height: 60vh;
         vertical-align: bottom;
         padding: 10px;
+        padding-top: 0px;
         display: flex;
         margin-left: auto;
         object-fit: cover;
@@ -494,7 +495,7 @@
         height: 65px;
         width: 100%;
         padding: 10px;
-        padding-bottom: 0px;
+        padding-bottom: 10px;
         border: none;
         margin-left: auto;
         margin-right: auto;
