@@ -371,7 +371,6 @@
         height: 60vh;
         vertical-align: bottom;
         padding: 10px;
-        padding-top: 0px;
         display: flex;
         margin-left: auto;
         object-fit: cover;
@@ -384,6 +383,7 @@
         height: auto;
         display: flex;
         border: none;
+        margin-top: -10px;
         border-bottom: solid #677069 1px;
     }
 
