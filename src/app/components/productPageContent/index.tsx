@@ -42,6 +42,16 @@ const ProductPageContent = ({
                                     onClick={() => {
                                         setImageIndex(index);
                                     }}
+                                    style={
+                                        index === imageIndex
+                                            ? {
+                                                  border: "3px solid #e3dfde",
+                                                  borderRadius: "13px",
+                                                  padding: "2px",
+                                                  boxShadow: "0 1px 5px 1px #e3dfde",
+                                              }
+                                            : {}
+                                    }
                                 />
                             );
                         }
