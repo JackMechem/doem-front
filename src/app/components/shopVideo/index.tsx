@@ -18,6 +18,7 @@ const ShopVideo = ({ desktopUrl, mobileUrl }: Props) => {
         }
     };
     useEffect(() => {
+        handleResize();
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);

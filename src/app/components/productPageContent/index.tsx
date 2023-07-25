@@ -27,6 +27,7 @@ const ProductPageContent = ({ product: product }: { product: any }) => {
         <Hydration>
             <div className={styles.mainContainer}>
                 <div className={styles.photoSecector}>
+                    <div className={styles.boxShadow}> </div>
                     {product.productVariations[currentVariation].images.map(
                         (image: any, index: number) => {
                             return (
@@ -42,10 +43,9 @@ const ProductPageContent = ({ product: product }: { product: any }) => {
                                     style={
                                         index === imageIndex
                                             ? {
-                                                  border: "3px solid #e3dfde",
+                                                  border: "1px solid white",
                                                   borderRadius: "13px",
-                                                  padding: "2px",
-                                                  boxShadow: "0 1px 5px 1px #e3dfde",
+                                                  boxShadow: "0 1px 5px 1px white",
                                               }
                                             : {}
                                     }
