@@ -39,7 +39,6 @@
     width: 100%;
     height: calc(90vh - 20px);
     vertical-align: bottom;
-    margin: 10px;
     display: flex;
     margin-left: auto;
     object-fit: cover;
@@ -49,6 +48,7 @@
 .imageContainer {
     width: 42%;
     height: auto;
+    padding: 10px 10px 10px 0px;
     display: flex;
 }
 
@@ -97,6 +97,10 @@
     padding-left: 70px;
     padding-right: 70px;
     overflow: scroll;
+    -moz-user-select: none; /* firefox */
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE*/
+    user-select: none; /* Standard syntax */
 }
 
 .name {
@@ -175,9 +179,12 @@
 
 .photoSecector img {
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
+    object-fit: cover;
+    filter: brightness(100%);
+    -webkit-filter: brightness(100%);
 }
 
 /*
@@ -204,7 +211,6 @@
         vertical-align: bottom;
         margin-left: auto;
         margin-right: auto;
-        margin-top: 10px;
         object-fit: cover;
     }
 
@@ -212,6 +218,7 @@
         width: 100%;
         height: auto;
         display: flex;
+        padding-top: 0px;
         border-bottom: solid #677069 1px;
         justify-content: center;
         align-items: center;
@@ -331,7 +338,7 @@
         position: relative;
         height: 65px;
         width: 70%;
-        padding-bottom: 0px;
+        padding-bottom: 10px;
         margin-left: auto;
         margin-right: auto;
         display: flex;
@@ -342,7 +349,7 @@
 
     .photoSecector img {
         cursor: pointer;
-        border-radius: 10px;
+        border-radius: 5px;
         margin: 0px;
         margin-left: 10px;
         margin-right: 10px;
@@ -372,8 +379,6 @@
         height: 60vh;
         vertical-align: bottom;
         display: flex;
-        margin-left: 10px;
-        margin-right: 10px;
         object-fit: cover;
         border: none;
         border-radius: 10px;
@@ -384,7 +389,7 @@
         height: auto;
         display: flex;
         border: none;
-        margin-top: -10px;
+        padding: 0px 10px 10px 10px;
         border-bottom: solid #677069 1px;
     }
 
@@ -508,9 +513,10 @@
 
     .photoSecector img {
         cursor: pointer;
-        border-radius: 10px;
+        border-radius: 5px;
         margin: 0px;
         margin-left: 10px;
         margin-right: 10px;
+        object-fit: cover;
     }
 }

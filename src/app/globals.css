@@ -4,6 +4,10 @@
     margin: 0;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+    -moz-user-select: none; /* firefox */
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE*/
+    user-select: none; /* Standard syntax */
 }
 
 *::-webkit-scrollbar {

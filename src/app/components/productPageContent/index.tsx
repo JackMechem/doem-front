@@ -27,7 +27,6 @@ const ProductPageContent = ({ product: product }: { product: any }) => {
         <Hydration>
             <div className={styles.mainContainer}>
                 <div className={styles.photoSecector}>
-                    <div className={styles.boxShadow}> </div>
                     {product.productVariations[currentVariation].images.map(
                         (image: any, index: number) => {
                             return (
@@ -35,6 +34,9 @@ const ProductPageContent = ({ product: product }: { product: any }) => {
                                     key={image.id}
                                     src={image.url}
                                     alt={index.toString()}
+                                    onMouseOver={() => {
+                                        setImageIndex(index);
+                                    }}
                                     onClick={() => {
                                         setImageIndex(index);
                                     }}
@@ -43,9 +45,9 @@ const ProductPageContent = ({ product: product }: { product: any }) => {
                                     style={
                                         index === imageIndex
                                             ? {
-                                                  border: "1px solid white",
-                                                  borderRadius: "13px",
-                                                  boxShadow: "0 1px 5px 1px white",
+                                                  filter: "brightness(70%)",
+                                                  WebkitFilter: "brightness(70%)",
+                                                  boxShadow: "0 0px 5px 1px black",
                                               }
                                             : {}
                                     }
@@ -106,6 +108,10 @@ const ProductPageContent = ({ product: product }: { product: any }) => {
                                             alt=""
                                             className={styles.variationButton}
                                             onClick={() => {
+                                                setCurrentVariation(index);
+                                                setImageIndex(0);
+                                            }}
+                                            onMouseOver={() => {
                                                 setCurrentVariation(index);
                                                 setImageIndex(0);
                                             }}
