@@ -1,0 +1,17 @@
+.video {
+    grid-column: span 2;
+    display: flex;
+    width: calc(100% + 2px);
+    height: auto;
+    padding: 15px;
+    margin-left: -1px;
+    border-left: solid #677069 1px;
+    border-right: solid #677069 1px;
+}
+
+.mobileGif {
+    display: flex;
+    width: 100%;
+    height: auto;
+    padding: 15px;
+}

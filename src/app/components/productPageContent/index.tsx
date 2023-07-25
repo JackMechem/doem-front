@@ -4,19 +4,13 @@ import Image from "next/image";
 import styles from "./ProductPageContent.module.css";
 import { useState } from "react";
 import { useCartStore } from "@/store/cartStore";
-import { CartProduct, IProduct, IRockButtons, ProductVariation, RockImage } from "@/types";
+import { CartProduct, IProduct, VariationButton } from "@/types";
 import Hydration from "../hydration";
 import AddToCartButton from "../addToCartButton";
 import ReactMarkdown from "react-markdown";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-const ProductPageContent = ({
-    product: product,
-    rockButtons: rockButtons,
-}: {
-    product: any;
-    rockButtons: IRockButtons;
-}) => {
+const ProductPageContent = ({ product: product }: { product: any }) => {
     const [currentVariation, setCurrentVariation] = useState(0);
     const [imageIndex, setImageIndex] = useState(0);
 
@@ -100,24 +94,28 @@ const ProductPageContent = ({
                     <div className={styles.productVariation}>
                         {product.productVariations[currentVariation].name}
                     </div>
-                    <div className={styles.variationContainer}>
-                        {rockButtons.rockImages.map((rockImage: RockImage, index: number) => (
-                            <div className={styles.rockContainer} key={rockImage.id}>
-                                <img
-                                    src={rockImage.image.url}
-                                    width={100}
-                                    height={100}
-                                    alt=""
-                                    className={styles.variationButton}
-                                    onClick={() => {
-                                        setCurrentVariation(index);
-                                        setImageIndex(0);
-                                    }}
-                                ></img>
-                                <p className={styles.underText}>{rockImage.variation}</p>
-                            </div>
-                        ))}
-                    </div>
+                    {product.variationButtonSet && (
+                        <div className={styles.variationContainer}>
+                            {product.variationButtonSet.variationButtons.map(
+                                (but: VariationButton, index: number) => (
+                                    <div className={styles.rockContainer} key={but.id}>
+                                        <img
+                                            src={but.image.url}
+                                            width={100}
+                                            height={100}
+                                            alt=""
+                                            className={styles.variationButton}
+                                            onClick={() => {
+                                                setCurrentVariation(index);
+                                                setImageIndex(0);
+                                            }}
+                                        ></img>
+                                        <p className={styles.underText}>{but.variation}</p>
+                                    </div>
+                                )
+                            )}
+                        </div>
+                    )}
                     <ReactMarkdown className={styles.description}>
                         {product.productVariations[currentVariation].description}
                     </ReactMarkdown>

@@ -21,6 +21,7 @@ export interface IProductCategory {
     name: string;
     slug: string;
     video: IImage;
+    mobileGif: IImage;
     products: IProduct[];
 }
 
@@ -29,6 +30,7 @@ export interface IProduct {
     id?: string;
     slug: string;
     productVariations: ProductVariation[];
+    variationButtonSet: VariationButtonSet;
 }
 
 export interface ProductVariation {
@@ -42,16 +44,16 @@ export interface ProductVariation {
     images?: IImage[];
 }
 
-export interface IRockButtons {
+export interface VariationButtonSet {
     name: string;
     slug: string;
-    rockImages: RockImage[];
+    variationButtons: VariationButton[];
 }
 
-export interface RockImage {
+export interface VariationButton {
     id: string;
     name: string;
-    variation: "Green" | "Cream" | "White";
+    variation: string;
     image: {
         id: string;
         width: number;

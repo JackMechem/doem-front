@@ -3,7 +3,7 @@ import { gql } from "graphql-request";
 import styles from "./page.module.css";
 import Image from "next/image";
 import ProductPageContent from "@/app/components/productPageContent";
-import { IProduct, IRockButtons } from "@/types";
+import { IProduct } from "@/types";
 import { PageWrapper } from "@/app/components/pageWrapper";
 
 const getProducts = async () => {
@@ -57,6 +57,21 @@ const getProduct = async (slug: string) => {
                             url
                         }
                     }
+                    variationButtonSet {
+                        name
+                        slug
+                        variationButtons {
+                            id
+                            name
+                            variation
+                            image {
+                                id
+                                width
+                                height
+                                url
+                            }
+                        }
+                    }
                 }
             }
         `,
@@ -67,43 +82,13 @@ const getProduct = async (slug: string) => {
     return product;
 };
 
-const getRockButtons = async (slug: string) => {
-    const { rockButtonSet }: { rockButtonSet: IRockButtons } = await graphcms.request(
-        gql`
-            query RockButtonsQuery($slug: String!) {
-                rockButtonSet(where: { slug: $slug }) {
-                    name
-                    slug
-                    rockImages {
-                        id
-                        name
-                        variation
-                        image {
-                            id
-                            width
-                            height
-                            url
-                        }
-                    }
-                }
-            }
-        `,
-        {
-            slug: slug,
-        }
-    );
-    return rockButtonSet;
-    console.log(rockButtonSet);
-};
-
 const ProductPage = async ({ params }: { params: { slug: string } }) => {
     const { slug } = params;
     const product = await getProduct(slug);
-    const rockButtons = await getRockButtons("product-page");
 
     return (
         <PageWrapper>
-            <ProductPageContent product={product} rockButtons={rockButtons} />
+            <ProductPageContent product={product} />
         </PageWrapper>
     );
 };
