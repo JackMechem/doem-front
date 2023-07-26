@@ -46,8 +46,8 @@ const ProductPageContent = ({ product: product }: { product: any }) => {
                                         index === imageIndex
                                             ? {
                                                   filter: "brightness(70%)",
+                                                  border: "solid 1px black",
                                                   WebkitFilter: "brightness(70%)",
-                                                  boxShadow: "0 0px 5px 1px black",
                                               }
                                             : {}
                                     }

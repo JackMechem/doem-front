@@ -8,14 +8,17 @@ import { FiTrash2 } from "react-icons/fi";
 import Hydration from "../hydration";
 import { loadStripe } from "@stripe/stripe-js";
 import { AnimatePresence, motion } from "framer-motion";
+import loader from "../../../assets/loader.gif";
 
 const stripePromise = loadStripe(`${process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}`);
 const Cart = () => {
     const { cartProducts, addToCart, removeFromCart } = useCartStore();
     const [cartIsVisible, setCartIsVisible] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleCheckoutClick = async (e: any) => {
         e.preventDefault();
+        setIsLoading(true);
         const stripe = await stripePromise;
 
         const session = await fetch("/api/create-checkout-session", {
@@ -36,6 +39,27 @@ const Cart = () => {
     return (
         <Hydration>
             <div>
+                {isLoading ? (
+                    <div
+                        style={{
+                            zIndex: "400000000000000",
+                            position: "fixed",
+                            backgroundColor: "#F3F2E2",
+                            width: "100vw",
+                            height: "100vh",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                        }}
+                    >
+                        <img
+                            src={loader.src}
+                            style={{ width: "30vw", height: "auto", objectFit: "contain" }}
+                        />
+                    </div>
+                ) : (
+                    ""
+                )}
                 <div
                     className={styles.cartLogo}
                     onClick={() => {

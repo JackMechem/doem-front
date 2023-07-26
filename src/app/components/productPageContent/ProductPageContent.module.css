@@ -43,6 +43,7 @@
     margin-left: auto;
     object-fit: cover;
     border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.8) 0 0 5px -2px;
 }
 
 .imageContainer {
@@ -167,7 +168,6 @@
     padding: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     overflow-y: scroll;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
@@ -182,6 +182,7 @@
     border-radius: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
+    height: 50px;
     object-fit: cover;
     filter: brightness(100%);
     -webkit-filter: brightness(100%);
@@ -219,6 +220,7 @@
         height: auto;
         display: flex;
         padding-top: 0px;
+        padding-right: 0px;
         border-bottom: solid #677069 1px;
         justify-content: center;
         align-items: center;
@@ -233,8 +235,8 @@
 
     .leftArrow {
         position: absolute;
-        top: calc(20px + 65px);
-        right: calc(15% + 70px);
+        top: calc(20px + 55px);
+        right: calc(15% + 60px);
         height: 40px;
         width: 40px;
         color: #000000;
@@ -250,8 +252,8 @@
 
     .rightArrow {
         position: absolute;
-        top: calc(20px + 65px);
-        right: calc(15% + 20px);
+        top: calc(20px + 55px);
+        right: calc(15% + 10px);
         height: 40px;
         width: 40px;
         color: #000000;
@@ -271,7 +273,7 @@
         display: flex;
         position: relative;
         flex-direction: column;
-        border-left: solid #677069 1px;
+        border: none;
         padding-left: 25px;
         padding-right: 25px;
         padding-top: 25px;
@@ -337,13 +339,12 @@
     .photoSecector {
         position: relative;
         height: 65px;
-        width: 70%;
-        padding-bottom: 10px;
+        width: calc(70% - 20px);
+        padding: 10px 0px 10px 0px;
         margin-left: auto;
         margin-right: auto;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
         overflow-x: scroll;
     }
 
@@ -353,6 +354,15 @@
         margin: 0px;
         margin-left: 10px;
         margin-right: 10px;
+        height: auto;
+        width: 50px;
+    }
+
+    .photoSecector img:first-child {
+        margin-left: 0px;
+    }
+    .photoSecector img:last-child {
+        margin-right: 0px;
     }
 }
 
@@ -499,7 +509,7 @@
     .photoSecector {
         position: relative;
         height: 65px;
-        width: 100%;
+        width: calc(100% - 20px);
         padding: 10px;
         padding-bottom: 10px;
         border: none;
@@ -507,7 +517,6 @@
         margin-right: auto;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
         overflow-x: scroll;
     }
 
