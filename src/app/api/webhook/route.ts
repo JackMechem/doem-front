@@ -64,7 +64,6 @@ export async function POST(request: Request) {
                 email: customer_details?.email,
                 total: session.amount_total,
                 stripeCheckoutId: session.id,
-                trackingNumber: "1101",
                 shipped: false,
                 address: {
                     create: {

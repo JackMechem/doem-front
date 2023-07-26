@@ -1,0 +1,86 @@
+.OrderCompletedContainer {
+    position: fixed;
+    width: 25%;
+    height: auto;
+    background-color: #f3f2e2;
+    border: solid 1px #677069;
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    box-shadow: 0 1px 10px -2px rgba(250, 250, 250, 0.5);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.OrderCompletedContainer h1 {
+    font-weight: 400;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.OrderCompletedContainer h3 {
+    font-weight: 500;
+    margin-bottom: 10px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.OrderCompletedContainer p {
+    overflow-wrap: break-word;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.OrderCompletedContainer .items {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f0efeb;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.OrderCompletedContainer .items p {
+    line-height: 40px;
+    margin: 0px;
+}
+
+.OrderCompletedContainer .orderId {
+    width: 100%;
+    background-color: #f0efeb;
+    padding: 10px;
+    border-radius: 10px;
+    overflow-wrap: break-word;
+    z-index: 100;
+}
+
+.OrderCompletedContainer .close {
+    font-size: 40px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+@media (max-width: 1400px) {
+    .OrderCompletedContainer {
+        width: 40%;
+    }
+}
+
+@media (max-width: 900px) {
+    .OrderCompletedContainer {
+        width: 50%;
+    }
+}
+
+@media (max-width: 700px) {
+    .OrderCompletedContainer {
+        width: 90%;
+    }
+}
