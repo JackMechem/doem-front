@@ -96,6 +96,7 @@ export async function POST(request: Request) {
         name: "Zane Mechem",
         company: "doem",
         street1: "643 N Hill Pl",
+        street2: "apt 4",
         city: "Los Angeles",
         state: "California",
         zip: "90012-2205",
