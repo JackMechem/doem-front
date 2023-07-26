@@ -93,15 +93,15 @@ export async function POST(request: Request) {
     );
 
     const addressFrom: Shippo.Address = await shippo.address.create({
-        name: "Jack Mechem",
+        name: "Zane Mechem",
         company: "doem",
-        street1: "10651 Robin Hill Ave",
-        city: "Las Vegas",
-        state: "Nevada",
-        zip: "89129",
+        street1: "643 N Hill Pl",
+        city: "Los Angeles",
+        state: "California",
+        zip: "90012-2205",
         country: "US",
-        phone: "+1 702 201 4608",
-        email: "mechemjack@gmail.com",
+        phone: "+1 702 265 4485",
+        email: "officialdoem@gmail.com",
     });
 
     const addressTo: Shippo.Address = await shippo.address.create({
