@@ -111,10 +111,6 @@ const ProductPageContent = ({ product: product }: { product: any }) => {
                                                 setCurrentVariation(index);
                                                 setImageIndex(0);
                                             }}
-                                            onMouseOver={() => {
-                                                setCurrentVariation(index);
-                                                setImageIndex(0);
-                                            }}
                                         ></img>
                                         <p className={styles.underText}>{but.variation}</p>
                                     </div>

@@ -9,6 +9,18 @@
     gap: 1px;
 }
 
+.catContainer {
+    width: 30vw;
+    position: absolute;
+    left: 0px;
+    padding: 10px 10px;
+}
+
+.catContainer .cat {
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
 /*
  *
  * Tablet / Mobile
@@ -23,6 +35,14 @@
         border-bottom: solid #677069 1px;
         gap: 1px;
     }
+
+    .catcontainer {
+        display: none;
+    }
+    .catContainer .cat {
+        display: none;
+    }
+
     .container .video {
         grid-column: span 2;
         display: flex;
@@ -43,6 +63,14 @@
         border-bottom: solid #677069 1px;
         gap: 1px;
     }
+
+    .catcontainer {
+        display: none;
+    }
+    .catContainer .cat {
+        display: none;
+    }
+
     .container .video {
         grid-column: span 1;
         display: flex;

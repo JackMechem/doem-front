@@ -36,7 +36,7 @@ const MobileMenu: NextPage<Props> = ({
                 <motion.img
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.2 }}
                     className={styles.hamImg}
                     src={logoUrl}
                     onClick={() => {
@@ -46,7 +46,7 @@ const MobileMenu: NextPage<Props> = ({
                 <motion.div
                     initial={{ x: -100, opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.7, type: "spring" }}
+                    transition={{ duration: 0.5, type: "spring" }}
                     className={styles.hamItemContainer}
                 >
                     <div
@@ -84,7 +84,7 @@ const MobileMenu: NextPage<Props> = ({
                     }}
                     initial={{ rotate: 0, opacity: 0 }}
                     animate={{ rotate: 360, opacity: 1 }}
-                    transition={{ duration: 0.8, type: "spring", stiffness: 50 }}
+                    transition={{ duration: 0.4, type: "spring", stiffness: 50 }}
                 >
                     <RxCross1 />
                 </motion.div>
