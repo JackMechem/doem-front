@@ -27,7 +27,7 @@ const ShopPageContent = ({ productCategories }: ShopPageContentProps) => {
                 {productCategories.map((category, index: number) => (
                     <p
                         className={styles.cat}
-                        key={category.id}
+                        key={category.slug}
                         onClick={() => {
                             handleCatClick(index);
                         }}
@@ -38,21 +38,15 @@ const ShopPageContent = ({ productCategories }: ShopPageContentProps) => {
             </div>
             {productCategories.map((category, index: number) => {
                 return (
-                    <>
-                        <div
-                            ref={refs.current[index]}
-                            key={category.id}
-                            className={styles.container}
-                        >
-                            <ShopVideo
-                                desktopUrl={category.video.url}
-                                mobileUrl={category.mobileGif.url}
-                            />
-                            {category.products.map((product) => (
-                                <ProductCard product={product} key={product.id} />
-                            ))}
-                        </div>
-                    </>
+                    <div ref={refs.current[index]} className={styles.container} key={category.id}>
+                        <ShopVideo
+                            desktopUrl={category.video.url}
+                            mobileUrl={category.mobileGif.url}
+                        />
+                        {category.products.map((product) => (
+                            <ProductCard product={product} key={product.id} />
+                        ))}
+                    </div>
                 );
             })}
         </>
