@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { IProduct, VariationButton } from "@/types";
 import { NextPage } from "next";
@@ -17,6 +17,21 @@ interface Props {
 const ProductCard: NextPage<Props> = ({ product }) => {
     const [currentVar, setCurrentVar] = useState(0);
     const [thumbIndex, setThumbIndex] = useState(0);
+
+    useEffect(() => {
+        if (product.variationButtonSet) {
+            setCurrentVar(
+                Math.floor(
+                    Math.random() *
+                        (product.variationButtonSet.variationButtons.length - 1 - 0 + 1) +
+                        0
+                )
+            );
+            return;
+        } else {
+            return;
+        }
+    }, []);
     return (
         <Link key={product.id} href={`/shop/${product.slug}`}>
             <div key={product.id} className={styles.card}>
@@ -26,7 +41,7 @@ const ProductCard: NextPage<Props> = ({ product }) => {
                     width={product.productVariations[currentVar].images![thumbIndex].width}
                     height={product.productVariations[currentVar].images![thumbIndex].height}
                     alt={product.productVariations[currentVar].slug}
-                    loading="eager"
+                    loading="lazy"
                     onMouseEnter={() => {
                         setThumbIndex(1);
                     }}
@@ -49,9 +64,6 @@ const ProductCard: NextPage<Props> = ({ product }) => {
                                             key={but.name}
                                             onMouseEnter={() => {
                                                 setCurrentVar(index);
-                                            }}
-                                            onMouseLeave={() => {
-                                                setCurrentVar(0);
                                             }}
                                         ></img>
                                     </div>

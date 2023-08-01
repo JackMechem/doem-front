@@ -35,7 +35,9 @@ const Page = async () => {
                     <div className={styles.title}>{page.title}</div>
                     {page.body.map((body) => (
                         <div className={styles.markdown} key={body.markdown}>
-                            <ReactMarkdown>{body.markdown}</ReactMarkdown>
+                            <ReactMarkdown className={styles.reactMarkdown}>
+                                {body.markdown}
+                            </ReactMarkdown>
                         </div>
                     ))}
                 </div>
