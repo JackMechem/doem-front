@@ -1,4 +1,4 @@
-import { GraphQLClient, gql } from "graphql-request";
+import { gql } from "graphql-request";
 import Stripe from "stripe";
 import { graphcms } from "@/lib/graphcms/client";
 import { CartProduct, IProduct, ProductVariation } from "@/types";
@@ -13,7 +13,6 @@ export async function POST(request: Request) {
         return pro.slug;
     });
 
-    console.log("data: ", cartProducts);
     const { productVariations }: { productVariations: ProductVariation[] } = await graphcms.request(
         gql`
             query ProductVariationQuery($slug: [String]!) {

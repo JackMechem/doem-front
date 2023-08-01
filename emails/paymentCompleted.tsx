@@ -4,23 +4,12 @@ import {
     Head,
     Heading,
     Html,
-    Img,
     Link,
     Preview,
     Text,
     Font,
 } from "@react-email/components";
 import * as React from "react";
-import { currency } from "swell-js";
-
-interface IOrderLineItem {
-    currency: string;
-    total: string;
-    total_price: number;
-    quantity: number;
-    weight: number;
-    weight_unit: "lb";
-}
 
 interface Props {
     order: any;
@@ -112,7 +101,7 @@ export const PaymentCompletedEmail = ({
                 <code style={code}>{sessionId}</code>
                 <Text style={footer}>
                     <Link href={baseUrl} target="_blank" style={{ ...link, color: "#898989" }}>
-                        doem.com
+                        doemshop.com
                     </Link>
                     <br />
                     A SYNTHETIC NATURE

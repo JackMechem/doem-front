@@ -6,7 +6,6 @@ import styles from "./cart.module.css";
 import { BsCart2 } from "react-icons/bs";
 import { FiTrash2 } from "react-icons/fi";
 import Hydration from "../hydration";
-import { loadStripe } from "@stripe/stripe-js";
 import { AnimatePresence, motion } from "framer-motion";
 import loader from "../../../assets/loader.gif";
 import getStripe from "@/lib/stripe/get-stripe";
