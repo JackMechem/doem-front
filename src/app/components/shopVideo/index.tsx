@@ -28,7 +28,7 @@ const ShopVideo = ({ desktopUrl, mobileUrl }: Props) => {
             {isMobile ? (
                 <img src={mobileUrl} className={styles.mobileGif} />
             ) : (
-                <video loop autoPlay playsInline controls muted className={styles.video}>
+                <video loop autoPlay playsInline muted className={styles.video}>
                     <source src={desktopUrl} type="video/mp4" />
                 </video>
             )}
