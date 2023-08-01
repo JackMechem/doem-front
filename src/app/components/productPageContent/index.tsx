@@ -1,20 +1,16 @@
 "use client";
 
-import Image from "next/image";
 import styles from "./ProductPageContent.module.css";
 import { useState } from "react";
-import { useCartStore } from "@/store/cartStore";
 import { CartProduct, IProduct, VariationButton } from "@/types";
 import Hydration from "../hydration";
 import AddToCartButton from "../addToCartButton";
 import ReactMarkdown from "react-markdown";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-const ProductPageContent = ({ product: product }: { product: any }) => {
+const ProductPageContent = ({ product: product }: { product: IProduct }) => {
     const [currentVariation, setCurrentVariation] = useState(0);
     const [imageIndex, setImageIndex] = useState(0);
-
-    const { cartProducts, addToCart, removeFromCart } = useCartStore();
 
     const productInfo: CartProduct = {
         name: product.productVariations[currentVariation].name,
@@ -27,7 +23,7 @@ const ProductPageContent = ({ product: product }: { product: any }) => {
         <Hydration>
             <div className={styles.mainContainer}>
                 <div className={styles.photoSecector}>
-                    {product.productVariations[currentVariation].images.map(
+                    {product.productVariations[currentVariation].images?.map(
                         (image: any, index: number) => {
                             return (
                                 <img
@@ -58,10 +54,12 @@ const ProductPageContent = ({ product: product }: { product: any }) => {
                 </div>
                 <div className={styles.imageContainer}>
                     <img
-                        src={product.productVariations[currentVariation].images[imageIndex].url}
-                        width={product.productVariations[currentVariation].images[imageIndex].width}
+                        src={product.productVariations[currentVariation].images![imageIndex].url}
+                        width={
+                            product.productVariations[currentVariation].images![imageIndex].width
+                        }
                         height={
-                            product.productVariations[currentVariation].images[imageIndex].height
+                            product.productVariations[currentVariation].images![imageIndex].height
                         }
                         alt="none"
                     ></img>
@@ -81,7 +79,7 @@ const ProductPageContent = ({ product: product }: { product: any }) => {
                             onClick={() => {
                                 if (
                                     imageIndex <
-                                    product.productVariations[currentVariation].images.length - 1
+                                    product.productVariations[currentVariation].images!.length - 1
                                 ) {
                                     setImageIndex((c) => c + 1);
                                 }
@@ -119,7 +117,7 @@ const ProductPageContent = ({ product: product }: { product: any }) => {
                         </div>
                     )}
                     <ReactMarkdown className={styles.description}>
-                        {product.productVariations[currentVariation].description}
+                        {product.productVariations[currentVariation].description!}
                     </ReactMarkdown>
                     <AddToCartButton cartInfo={productInfo}>add to cart {"-"}</AddToCartButton>
                 </div>

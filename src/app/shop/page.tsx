@@ -111,7 +111,7 @@ const Shop = async ({ searchParams }: Props) => {
 
     const stripeCheckoutId = searchParams?.id;
 
-    let order: any;
+    let order: any; // will create a type eventually
 
     if (stripeCheckoutId) {
         order = await getOrder(stripeCheckoutId);

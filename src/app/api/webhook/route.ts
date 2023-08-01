@@ -1,12 +1,9 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-import EasyPostClient, { IOrder, IRate, Shipment } from "@easypost/api/";
 import { GraphQLClient } from "graphql-request";
 import { Resend } from "resend";
 import PaymentCompletedEmail from "../../../../emails/paymentCompleted";
-import Shippo, { Parcel } from "shippo";
-import { LineItem } from "@stripe/stripe-js";
-import { currency } from "swell-js";
+import Shippo from "shippo";
 
 const graphcms = new GraphQLClient(`${process.env.GRAPH_CMS_ENDPOINT}`, {
     headers: {
@@ -24,7 +21,6 @@ interface IOrderLineItem {
 }
 
 const stripe = new Stripe(`${process.env.STRIPE_SECRET_KEY}`, { apiVersion: "2022-11-15" });
-// const client: EasyPostClient = new EasyPostClient(`${process.env.EASY_POST_KEY}`);
 const resend: Resend = new Resend(`${process.env.RESEND_KEY}`);
 
 let shippo = require("shippo")(`${process.env.SHIPPO_TOKEN}`);

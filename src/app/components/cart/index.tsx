@@ -9,8 +9,8 @@ import Hydration from "../hydration";
 import { loadStripe } from "@stripe/stripe-js";
 import { AnimatePresence, motion } from "framer-motion";
 import loader from "../../../assets/loader.gif";
+import getStripe from "@/lib/stripe/get-stripe";
 
-const stripePromise = loadStripe(`${process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}`);
 const Cart = () => {
     const { cartProducts, addToCart, removeFromCart } = useCartStore();
     const [cartIsVisible, setCartIsVisible] = useState(false);
@@ -19,7 +19,7 @@ const Cart = () => {
     const handleCheckoutClick = async (e: any) => {
         e.preventDefault();
         setIsLoading(true);
-        const stripe = await stripePromise;
+        const stripe = await getStripe();
 
         const session = await fetch("/api/create-checkout-session", {
             method: "POST",
