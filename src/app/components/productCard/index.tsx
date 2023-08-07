@@ -47,8 +47,8 @@ const ProductCard: NextPage<Props> = ({ product }) => {
                 <Image
                     key={thumbIndex + currentVar}
                     src={product.productVariations[currentVar].images![thumbIndex].url}
-                    width={product.productVariations[currentVar].images![thumbIndex].width}
-                    height={product.productVariations[currentVar].images![thumbIndex].height}
+                    width={1920}
+                    height={1080}
                     alt={product.productVariations[currentVar].slug}
                     priority
                     onMouseEnter={() => {
@@ -68,8 +68,8 @@ const ProductCard: NextPage<Props> = ({ product }) => {
                                         <Image
                                             src={but.image.url}
                                             alt={but.variation}
-                                            width={but.image.width}
-                                            height={but.image.height}
+                                            width={1920}
+                                            height={1080}
                                             key={but.name}
                                             onMouseEnter={() => {
                                                 setCurrentVar(index);

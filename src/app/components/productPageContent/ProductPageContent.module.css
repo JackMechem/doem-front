@@ -183,6 +183,7 @@
     margin-top: 10px;
     margin-bottom: 10px;
     height: 50px;
+    width: auto;
     object-fit: cover;
     filter: brightness(100%);
     -webkit-filter: brightness(100%);
