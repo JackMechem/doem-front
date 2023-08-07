@@ -39,7 +39,7 @@
         "remark": "^14.0.3",
         "remark-html": "^15.0.2",
         "resend": "^0.17.1",
-        "sharp": "^0.32.1",
+        "sharp": "^0.32.4",
         "shippo": "^1.7.1",
         "stripe": "^12.10.0",
         "typescript": "5.1.3",
