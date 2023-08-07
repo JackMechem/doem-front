@@ -39,6 +39,7 @@ const ProductPageContent = ({ product: product }: { product: IProduct }) => {
                                     }}
                                     width={image.width}
                                     height={image.height}
+                                    sizes="50px"
                                     style={
                                         index === imageIndex
                                             ? {
@@ -62,6 +63,7 @@ const ProductPageContent = ({ product: product }: { product: IProduct }) => {
                         height={
                             product.productVariations[currentVariation].images![imageIndex].height
                         }
+                        sizes="(max-width: 600px) 70vw, (max-width: 1200px) 70vw, 40vw"
                         alt="none"
                     />
                     <div>

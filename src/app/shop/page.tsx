@@ -5,6 +5,7 @@ import { PageWrapper } from "../components/pageWrapper";
 import OrderCompleted from "../components/orderCompleted";
 import { GraphQLClient } from "graphql-request";
 import ShopPageContent from "../components/shopPageContent";
+import ReactDOM from "react-dom";
 
 const mutGraphCms = new GraphQLClient(`${process.env.GRAPH_CMS_ENDPOINT}`, {
     headers: {
