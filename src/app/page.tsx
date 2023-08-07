@@ -3,6 +3,7 @@ import { graphcms } from "@/lib/graphcms/client";
 import { ILandingPage } from "@/types";
 import { Sarina } from "next/font/google";
 import Link from "next/link";
+import Image from "next/image";
 
 const sarina = Sarina({
     subsets: ["latin"],
@@ -59,7 +60,12 @@ const HomePage = async () => {
                 </div>
                 <div className={styles.description}>{page.description}</div>
                 <Link href={"/shop"}>
-                    <img src={page.rockButton.url} width={"auto"} height={"auto"} />
+                    <Image
+                        alt="Burning Candle Image"
+                        src={page.rockButton.url}
+                        width={page.rockButton.width}
+                        height={page.rockButton.height}
+                    />
                 </Link>
             </div>
         </div>

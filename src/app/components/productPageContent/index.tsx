@@ -7,6 +7,7 @@ import Hydration from "../hydration";
 import AddToCartButton from "../addToCartButton";
 import ReactMarkdown from "react-markdown";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import Image from "next/image";
 
 const ProductPageContent = ({ product: product }: { product: IProduct }) => {
     const [currentVariation, setCurrentVariation] = useState(0);
@@ -26,7 +27,7 @@ const ProductPageContent = ({ product: product }: { product: IProduct }) => {
                     {product.productVariations[currentVariation].images?.map(
                         (image: any, index: number) => {
                             return (
-                                <img
+                                <Image
                                     key={image.id}
                                     src={image.url}
                                     alt={index.toString()}
@@ -36,8 +37,8 @@ const ProductPageContent = ({ product: product }: { product: IProduct }) => {
                                     onClick={() => {
                                         setImageIndex(index);
                                     }}
-                                    loading="eager"
-                                    decoding="async"
+                                    width={image.width}
+                                    height={image.height}
                                     style={
                                         index === imageIndex
                                             ? {
@@ -53,7 +54,7 @@ const ProductPageContent = ({ product: product }: { product: IProduct }) => {
                     )}
                 </div>
                 <div className={styles.imageContainer}>
-                    <img
+                    <Image
                         src={product.productVariations[currentVariation].images![imageIndex].url}
                         width={
                             product.productVariations[currentVariation].images![imageIndex].width
@@ -62,7 +63,7 @@ const ProductPageContent = ({ product: product }: { product: IProduct }) => {
                             product.productVariations[currentVariation].images![imageIndex].height
                         }
                         alt="none"
-                    ></img>
+                    />
                     <div>
                         <div
                             className={styles.leftArrow}
@@ -99,7 +100,7 @@ const ProductPageContent = ({ product: product }: { product: IProduct }) => {
                             {product.variationButtonSet.variationButtons.map(
                                 (but: VariationButton, index: number) => (
                                     <div className={styles.rockContainer} key={but.id}>
-                                        <img
+                                        <Image
                                             src={but.image.url}
                                             width={100}
                                             height={100}
@@ -109,7 +110,7 @@ const ProductPageContent = ({ product: product }: { product: IProduct }) => {
                                                 setCurrentVariation(index);
                                                 setImageIndex(0);
                                             }}
-                                        ></img>
+                                        />
                                         <p className={styles.underText}>{but.variation}</p>
                                     </div>
                                 )

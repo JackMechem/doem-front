@@ -8,6 +8,7 @@ import MobileMenu from "../mobileMenu";
 import styles from "./Header.module.css";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 
 interface Props {
     headerContent: IHeaderContent;
@@ -25,7 +26,12 @@ const Header = ({ headerContent }: Props) => {
         <div className={styles.header}>
             <Link href={"/"}>
                 <div className={styles.logo}>
-                    <img src={headerContent.logo.url} height="100%" />
+                    <Image
+                        width={headerContent.logo.width}
+                        height={headerContent.logo.height}
+                        alt="header logo"
+                        src={headerContent.logo.url}
+                    />
                 </div>
             </Link>
 
@@ -63,19 +69,34 @@ const Header = ({ headerContent }: Props) => {
             <div className={styles.headerLinkContainer}>
                 <Link href={"/shop"}>
                     <div className={styles.headerLink}>
-                        <img src={headerContent.shopLogo.url} />
+                        <Image
+                            alt="shop nav logo"
+                            width={headerContent.shopLogo.width}
+                            height={headerContent.shopLogo.height}
+                            src={headerContent.shopLogo.url}
+                        />
                         SHOP
                     </div>
                 </Link>
                 <Link href={"/policy"}>
                     <div className={styles.headerLink}>
-                        <img src={headerContent.policyLogo.url} />
+                        <Image
+                            alt="policy nav logo"
+                            width={headerContent.policyLogo.width}
+                            height={headerContent.policyLogo.height}
+                            src={headerContent.policyLogo.url}
+                        />
                         POLICY
                     </div>
                 </Link>
                 <Link href={"/about"}>
                     <div className={styles.headerLink}>
-                        <img src={headerContent.aboutLogo.url} />
+                        <Image
+                            alt="about nav logo"
+                            width={headerContent.shopLogo.width}
+                            height={headerContent.shopLogo.height}
+                            src={headerContent.aboutLogo.url}
+                        />
                         ABOUT
                     </div>
                 </Link>

@@ -2,6 +2,7 @@
 
 import styles from "./page.module.css";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 interface Props {
     desktopUrl: string;
@@ -26,7 +27,13 @@ const ShopVideo = ({ desktopUrl, mobileUrl }: Props) => {
     return (
         <>
             {isMobile ? (
-                <img src={mobileUrl} className={styles.mobileGif} />
+                <Image
+                    alt="mobile category video"
+                    width={0}
+                    height={0}
+                    src={mobileUrl}
+                    className={styles.mobileGif}
+                />
             ) : (
                 <video loop autoPlay playsInline muted className={styles.video}>
                     <source src={desktopUrl} type="video/mp4" />

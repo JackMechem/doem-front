@@ -7,8 +7,7 @@ import { NextPage } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./page.module.css";
-import { AnimatePresence, motion } from "framer-motion";
-import { abort } from "process";
+import { useRouter } from "next/navigation";
 
 interface Props {
     product: IProduct;
@@ -17,6 +16,7 @@ interface Props {
 const ProductCard: NextPage<Props> = ({ product }) => {
     const [currentVar, setCurrentVar] = useState(0);
     const [thumbIndex, setThumbIndex] = useState(0);
+    const router = useRouter();
 
     useEffect(() => {
         if (product.variationButtonSet) {
@@ -32,16 +32,25 @@ const ProductCard: NextPage<Props> = ({ product }) => {
             return;
         }
     }, []);
+
+    useEffect(() => {
+        product.productVariations.map((productVar) => {
+            productVar.images?.map((image) => {
+                router.prefetch(image.url);
+            });
+        });
+    }, []);
+
     return (
         <Link key={product.id} href={`/shop/${product.slug}`}>
             <div key={product.id} className={styles.card}>
-                <img
+                <Image
                     key={thumbIndex + currentVar}
                     src={product.productVariations[currentVar].images![thumbIndex].url}
                     width={product.productVariations[currentVar].images![thumbIndex].width}
                     height={product.productVariations[currentVar].images![thumbIndex].height}
                     alt={product.productVariations[currentVar].slug}
-                    loading="lazy"
+                    priority
                     onMouseEnter={() => {
                         setThumbIndex(1);
                     }}
@@ -56,7 +65,7 @@ const ProductCard: NextPage<Props> = ({ product }) => {
                             {product.variationButtonSet.variationButtons.map(
                                 (but: VariationButton, index: number) => (
                                     <div className={styles.rock} key={but.id}>
-                                        <img
+                                        <Image
                                             src={but.image.url}
                                             alt={but.variation}
                                             width={but.image.width}
@@ -65,7 +74,7 @@ const ProductCard: NextPage<Props> = ({ product }) => {
                                             onMouseEnter={() => {
                                                 setCurrentVar(index);
                                             }}
-                                        ></img>
+                                        />
                                     </div>
                                 )
                             )}
