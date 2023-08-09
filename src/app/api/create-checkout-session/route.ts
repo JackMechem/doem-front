@@ -95,6 +95,7 @@ export async function POST(request: Request) {
                 shipping_address_collection: {
                     allowed_countries: ["US"],
                 },
+                allow_promotion_codes: true,
             });
 
         return NextResponse.json({ message: "Success", session: session });
