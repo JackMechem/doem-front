@@ -2,7 +2,7 @@
 
 import styles from "./ProductPageContent.module.css";
 import { useState } from "react";
-import { CartProduct, IProduct, VariationButton } from "@/types";
+import { CartProduct, IImage, IProduct, ProductVariation, VariationButton } from "@/types";
 import Hydration from "../hydration";
 import AddToCartButton from "../addToCartButton";
 import ReactMarkdown from "react-markdown";
@@ -55,17 +55,25 @@ const ProductPageContent = ({ product: product }: { product: IProduct }) => {
                     )}
                 </div>
                 <div className={styles.imageContainer}>
-                    <Image
-                        src={product.productVariations[currentVariation].images![imageIndex].url}
-                        width={
-                            product.productVariations[currentVariation].images![imageIndex].width
-                        }
-                        height={
-                            product.productVariations[currentVariation].images![imageIndex].height
-                        }
-                        sizes="(max-width: 600px) 70vw, (max-width: 1200px) 70vw, 40vw"
-                        alt="none"
-                    />
+                    {product.productVariations.map(
+                        (variation: ProductVariation, variationIndex: number) =>
+                            variation.images!.map((image: IImage, imgIndex) => (
+                                <Image
+                                    src={image.url}
+                                    width={image.width}
+                                    height={image.height}
+                                    sizes="(max-width: 600px) 70vw, (max-width: 1200px) 70vw, 40vw"
+                                    priority
+                                    style={
+                                        variationIndex === currentVariation &&
+                                        imgIndex === imageIndex
+                                            ? { display: "block" }
+                                            : { display: "none" }
+                                    }
+                                    alt="none"
+                                />
+                            ))
+                    )}
                     <div>
                         <div
                             className={styles.leftArrow}
