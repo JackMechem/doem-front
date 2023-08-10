@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./page.module.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Image from "next/image";
 
 interface Props {
@@ -35,9 +35,17 @@ const ShopVideo = ({ desktopUrl, mobileUrl }: Props) => {
                     className={styles.mobileGif}
                 />
             ) : (
-                <video loop autoPlay playsInline muted className={styles.video}>
-                    <source src={desktopUrl} type="video/mp4" />
-                </video>
+                <Suspense
+                    fallback={
+                        <div style={{ height: "100%", width: "100%", backgroundColor: "red" }}>
+                            loading...
+                        </div>
+                    }
+                >
+                    <video loop autoPlay playsInline muted className={styles.video}>
+                        <source src={desktopUrl} type="video/mp4" />
+                    </video>
+                </Suspense>
             )}
         </>
     );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import { IProduct, VariationButton } from "@/types";
 import { NextPage } from "next";
@@ -33,25 +33,43 @@ const ProductCard: NextPage<Props> = ({ product }) => {
         }
     }, []);
 
-    useEffect(() => {
-        product.productVariations.map((productVar) => {
-            productVar.images?.map((image) => {
-                router.prefetch(image.url);
-            });
-        });
-    }, []);
-
     return (
         <Link key={product.id} href={`/shop/${product.slug}`}>
             <div key={product.id} className={styles.card}>
+                {product.productVariations.map((variation: any, variationindex: number) =>
+                    variation.images!.map((image: any, index: number) => (
+                        <Image
+                            key={image.id}
+                            src={image.url}
+                            width={1920}
+                            height={1080}
+                            sizes="(max-width: 900px) 90vw, (max-width: 1200px) 40vw, 35vw"
+                            alt={product.productVariations[currentVar].slug}
+                            onMouseEnter={() => {
+                                setThumbIndex(1);
+                            }}
+                            onMouseLeave={() => {
+                                setThumbIndex(0);
+                            }}
+                            style={
+                                index === thumbIndex && variationindex === currentVar
+                                    ? {
+                                          display: "block",
+                                      }
+                                    : { display: "none" }
+                            }
+                        />
+                    ))
+                )}
+                {/* 
+
                 <Image
                     key={thumbIndex + currentVar}
                     src={product.productVariations[currentVar].images![thumbIndex].url}
                     width={1920}
                     height={1080}
-                    sizes="(max-width: 900px) 90vw, (max-width: 1200px) 40vw, 30vw"
+                    sizes="(max-width: 900px) 90vw, (max-width: 1200px) 40vw, 35vw"
                     alt={product.productVariations[currentVar].slug}
-                    priority
                     onMouseEnter={() => {
                         setThumbIndex(1);
                     }}
@@ -59,6 +77,7 @@ const ProductCard: NextPage<Props> = ({ product }) => {
                         setThumbIndex(0);
                     }}
                 />
+                */}
                 <div className={styles.infoContainer}>
                     <div className={styles.name}>{product.name}</div>
                     {product.variationButtonSet && (
