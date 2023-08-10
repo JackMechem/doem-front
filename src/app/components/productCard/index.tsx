@@ -51,6 +51,7 @@ const ProductCard: NextPage<Props> = ({ product }) => {
                             onMouseLeave={() => {
                                 setThumbIndex(0);
                             }}
+                            priority
                             style={
                                 index === thumbIndex && variationindex === currentVar
                                     ? {
