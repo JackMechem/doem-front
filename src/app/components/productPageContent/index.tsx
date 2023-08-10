@@ -59,6 +59,7 @@ const ProductPageContent = ({ product: product }: { product: IProduct }) => {
                         (variation: ProductVariation, variationIndex: number) =>
                             variation.images!.map((image: IImage, imgIndex) => (
                                 <Image
+                                    key={image.id}
                                     src={image.url}
                                     width={image.width}
                                     height={image.height}
