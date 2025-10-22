@@ -14,6 +14,12 @@ const nextConfig = {
                 port: "",
                 pathname: "/**",
             },
+            {
+                protocol: "https",
+                hostname:"us-west-2.graphassets.com",
+                port: "",
+                pathname: "/**",
+            },
         ],
         dangerouslyAllowSVG: true,
     },
